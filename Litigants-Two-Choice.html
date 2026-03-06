@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Litigants | Digital Court Companion</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  font-family:'Poppins', sans-serif;
+  background:#f4f7fb;
+  color:#0f172a;
+}
+
+/* ================= HEADER STYLE ================= */
+
+.main-header{
+    width:100%;
+    background:#13294b;
+    border-bottom:2px solid rgba(255,255,255,0.2);
+}
+
+.navbar{
+    width:100%;
+    max-width:1400px;
+    margin:auto;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:11px 40px;
+}
+
+.nav-left{
+    display:flex;
+    align-items:center;
+    gap:18px;
+    color:white;
+    font-size:22px;
+    font-weight:600;
+}
+
+.nav-left img{
+    width:60px;
+    height:60px;
+    object-fit:cover;
+    border-radius:10px;
+}
+
+.nav-center{
+    list-style:none;
+    display:flex;
+    gap:60px;
+}
+
+.nav-center li a{
+    position: relative;
+    text-decoration: none;
+    color: #e5e7eb;
+    font-size: 14px;
+    font-weight: 400;
+    padding-bottom: 5px;
+    transition: 0.3s ease;
+}
+
+.nav-center li a::after{
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 3px;
+    background-color: #facc15;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+}
+
+.nav-center li a:hover{
+    color: white;
+}
+
+.nav-center li a:hover::after{
+    transform: scaleX(1);
+}
+
+.login-btn{
+    padding:10px 28px;
+    background:transparent;
+    border:2px solid #facc15;
+    color:#facc15;
+    font-size:14px;
+    border-radius:8px;
+    cursor:pointer;
+    transition:0.3s ease;
+}
+
+.login-btn:hover{
+    background:#facc15;
+    color:#13294b;
+}
+
+/* ================= HERO SECTION ================= */
+
+.hero{
+  position:relative;
+  height:350px;
+  background:url("Images/tingey-injury-law-firm-DZpc4UY8ZtY-unsplash.jpg") center/cover no-repeat;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.hero::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:rgba(19,41,75,0.75);
+}
+
+.hero-content{
+  position:relative;
+  text-align:center;
+  color:white;
+  z-index:2;
+}
+
+.hero-content h1{
+  font-size:42px;
+  font-weight:700;
+  margin-bottom:12px;
+}
+
+.hero-content p{
+  font-size:16px;
+  opacity:0.9;
+}
+
+/* ================= CARD SECTION ================= */
+
+.litigant-section{
+  max-width:1200px;
+  margin:-80px auto 80px auto;
+  padding:0 40px;
+}
+
+.card-container{
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(320px, 1fr));
+  gap:40px;
+}
+
+.card{
+  background:white;
+  padding:40px;
+  border-radius:16px;
+  box-shadow:0 15px 40px rgba(0,0,0,0.08);
+  transition:0.3s ease;
+  position:relative;
+  overflow:hidden;
+}
+
+.card:hover{
+  transform:translateY(-8px);
+  box-shadow:0 20px 50px rgba(0,0,0,0.12);
+}
+
+.card-icon{
+  font-size:40px;
+  margin-bottom:20px;
+}
+
+.card h2{
+  font-size:22px;
+  margin-bottom:15px;
+  color:#13294b;
+}
+
+.card p{
+  font-size:15px;
+  color:#475569;
+  margin-bottom:30px;
+  line-height:1.6;
+}
+
+.card button{
+  padding:12px 28px;
+  border:none;
+  border-radius:8px;
+  font-size:14px;
+  font-weight:600;
+  cursor:pointer;
+  transition:0.3s ease;
+}
+
+/* Button Styles */
+
+.manage-btn{
+  background:#13294b;
+  color:white;
+}
+
+.manage-btn:hover{
+  background:#0f1f3a;
+}
+
+.find-btn{
+  background:#facc15;
+  color:#13294b;
+}
+
+.find-btn:hover{
+  background:#eab308;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:768px){
+  .navbar{
+    padding:15px 20px;
+  }
+
+  .nav-center{
+    display:none;
+  }
+
+  .hero-content h1{
+    font-size:30px;
+  }
+
+  .litigant-section{
+    padding:0 20px;
+  }
+}
+#finaalowyer:hover{
+    background-color: black;
+    color: white;
+}
+#managecases:hover{
+    background-color: #eab308;
+    color: #13294b;
+}
+
+</style>
+</head>
+
+<body>
+
+<header class="main-header">
+  <nav class="navbar">
+
+    <div class="nav-left">
+      <img src="Images/tingey-injury-law-firm-DZpc4UY8ZtY-unsplash.jpg" alt="Logo">
+      Digital Court Companion
+    </div>
+
+    <ul class="nav-center">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="About-Us.html">About Us</a></li>
+      <li><a href="Our-Services.html">Services</a></li>
+      <li><a href="Contact-Us.html">Contact Us</a></li>
+    </ul>
+
+    <button class="login-btn">Login</button>
+
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <h1>Litigant Dashboard</h1>
+    <p>Manage your cases or connect with trusted legal professionals easily.</p>
+  </div>
+</section>
+
+<!-- CARDS -->
+<section class="litigant-section">
+  <div class="card-container">
+
+    <!-- CARD 1 -->
+    <div class="card">
+      <div class="card-icon">📂</div>
+      <h2>My Cases</h2>
+      <p>
+        Track, manage and view your ongoing legal matters with complete transparency and real-time updates or add new cases.
+      </p>
+      <a href="My-Cases/index.html"><button id="managecases"  class="manage-btn">Manage Cases</button></a>
+    </div>
+
+    <!-- CARD 2 -->
+    <div class="card">
+      <div class="card-icon">⚖</div>
+      <h2>Need Legal Help?</h2>
+      <p>
+        Connect with verified lawyers tailored to your legal requirements.
+      </p>
+      <a href="Find-a-Lawyer/lawyers.html"><button id="finaalowyer" class="find-btn">Find a Lawyer</button></a>
+    </div>
+
+  </div>
+</section>
+
+</body>
+</html>

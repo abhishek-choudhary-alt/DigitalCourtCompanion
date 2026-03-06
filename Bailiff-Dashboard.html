@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bailiff Dashboard</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+/* ================= GLOBAL ================= */
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  font-family:'Poppins', sans-serif;
+  background:#f8fafc;
+  color:#0f172a;
+}
+
+/* ================= HEADER ================= */
+
+.main-header{
+    width:100%;
+    background:#13294b;
+    border-bottom:2px solid rgba(255,255,255,0.2);
+}
+
+.navbar{
+    max-width:1400px;
+    margin:auto;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:11px 40px;
+}
+
+.nav-left{
+    display:flex;
+    align-items:center;
+    gap:18px;
+    color:white;
+    font-size:22px;
+    font-weight:600;
+}
+
+.nav-left img{
+    width:60px;
+    height:60px;
+    object-fit:cover;
+    border-radius:10px;
+}
+
+.nav-center{
+    list-style:none;
+    display:flex;
+    gap:60px;
+}
+
+.nav-center li a{
+    position: relative;
+    text-decoration: none;
+    color: #e5e7eb;
+    font-size: 14px;
+    padding-bottom: 5px;
+    transition: 0.3s ease;
+}
+
+.nav-center li a::after{
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 3px;
+    background-color: #facc15;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+}
+
+.nav-center li a:hover{
+    color: white;
+}
+
+.nav-center li a:hover::after{
+    transform: scaleX(1);
+}
+
+.login-btn{
+    padding:10px 28px;
+    background:transparent;
+    border:2px solid #facc15;
+    color:#facc15;
+    font-size:14px;
+    border-radius:8px;
+    cursor:pointer;
+    transition:0.3s ease;
+}
+
+.login-btn:hover{
+    background:#facc15;
+    color:#13294b;
+}
+
+/* ================= DASHBOARD TABLE ================= */
+
+.dashboard-section{
+    padding:60px 100px;
+}
+
+.section-title{
+    font-size:26px;
+    margin-bottom:25px;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    background:white;
+    border-radius:15px;
+    overflow:hidden;
+    box-shadow:0 10px 30px rgba(0,0,0,0.08);
+}
+
+th, td{
+    padding:14px;
+    text-align:center;
+    border-bottom:1px solid #e5e7eb;
+}
+
+th{
+    background:#13294b;
+    color:white;
+}
+
+tr:hover{
+    background:#f1f5f9;
+}
+
+.no-data{
+    text-align:center;
+    margin-top:20px;
+    color:#64748b;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- ================= HEADER ================= -->
+
+<header class="main-header">
+  <nav class="navbar">
+
+    <div class="nav-left">
+      <img src="Images/tingey-injury-law-firm-DZpc4UY8ZtY-unsplash.jpg">
+      Digital Court Companion
+    </div>
+
+    <ul class="nav-center">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="About-Us.html">About Us</a></li>
+      <li><a href="Our-Services.html">Services</a></li>
+      <li><a href="Contact-Us.html">Contact Us</a></li>
+    </ul>
+
+    <button class="login-btn">Login</button>
+
+  </nav>
+</header>
+
+<!-- ================= BAILIFF DASHBOARD ================= -->
+
+<div class="dashboard-section">
+
+<h2 class="section-title">Bailiff Dashboard</h2>
+
+<table>
+<thead>
+<tr>
+<th>Case No</th>
+<th>Court No</th>
+<th>Witness Name</th>
+<th>Prisoner Name</th>
+<th>Date</th>
+<th>Time</th>
+</tr>
+</thead>
+<tbody id="bailiffBody"></tbody>
+</table>
+
+<p class="no-data" id="noDataMessage" style="display:none;">
+No cases assigned for today.
+</p>
+
+</div>
+
+<script>
+
+/* ================= CONFIG ================= */
+
+const USE_DUMMY_DATA = true;
+const bailiffId = 1;
+
+/* ================= DUMMY DATA ================= */
+
+const dummyCases = [
+{
+caseNo:"CR/2024/109",
+courtNo:"4",
+witnessName:"Ramesh Verma",
+prisonerName:"Amit Sharma",
+date:"2026-03-05",
+time:"11:30 AM"
+},
+{
+caseNo:"CV/2023/458",
+courtNo:"2",
+witnessName:"Priya Mehta",
+prisonerName:"Rahul Singh",
+date:"2026-03-05",
+time:"01:15 PM"
+}
+];
+
+/* ================= RENDER FUNCTION ================= */
+
+async function renderBailiffCases(){
+
+let cases=[];
+
+if(USE_DUMMY_DATA){
+cases=dummyCases;
+}else{
+try{
+const today=new Date().toISOString().split("T")[0];
+const response=await fetch(`/api/bailiff/cases?bailiffId=${bailiffId}&date=${today}`);
+cases=await response.json();
+}catch(error){
+console.error("Backend not connected",error);
+cases=[];
+}
+}
+
+const tbody=document.getElementById("bailiffBody");
+const noData=document.getElementById("noDataMessage");
+
+tbody.innerHTML="";
+
+if(cases.length===0){
+noData.style.display="block";
+return;
+}
+
+noData.style.display="none";
+
+cases.forEach(c=>{
+tbody.innerHTML+=`
+<tr>
+<td>${c.caseNo}</td>
+<td>${c.courtNo}</td>
+<td>${c.witnessName}</td>
+<td>${c.prisonerName}</td>
+<td>${c.date}</td>
+<td>${c.time}</td>
+</tr>`;
+});
+}
+
+renderBailiffCases();
+
+</script>
+
+</body>
+</html>

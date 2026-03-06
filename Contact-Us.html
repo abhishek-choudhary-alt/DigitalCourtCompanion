@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact Us</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Poppins', sans-serif;
+}
+
+body{
+  background:#0b1f5c;
+  color:white;
+}
+
+/* ================= NAVBAR ================= */
+
+.main-header{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  z-index:1000;
+  background:rgba(6,20,45,0.95);
+  backdrop-filter: blur(10px);
+  transition:transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+/* Hidden state */
+.main-header.hide{
+  transform:translateY(-100%);
+}
+
+/* Shadow when scrolling */
+.main-header.scrolled{
+  box-shadow:0 10px 30px rgba(0,0,0,0.4);
+}
+
+.navbar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:18px 10%;
+}
+
+/* LEFT */
+
+.nav-left{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin-left:-60px;
+  cursor:pointer;
+}
+
+.nav-left img{
+  width:55px;
+  height:55px;
+  object-fit:cover;
+  border-radius:8px;
+  transition:transform 0.3s ease;
+}
+
+.nav-left:hover img{
+  transform:rotate(-8deg) scale(1.1);
+}
+
+.nav-left .company-name{
+  font-size:21px;
+  font-weight:700;
+  color:#ffffff;
+  letter-spacing:0.5px;
+  white-space:nowrap;
+}
+
+/* CENTER LINKS */
+
+.nav-center{
+  list-style:none;
+  display:flex;
+  gap:45px;
+}
+
+.nav-center li a{
+  text-decoration:none;
+  color:#e2e8f0;
+  font-size:15px;
+  position:relative;
+  transition:0.3s;
+}
+
+.nav-center li a::after{
+  content:"";
+  position:absolute;
+  width:0%;
+  height:2px;
+  bottom:-6px;
+  left:0;
+  background:#d4af37;
+  transition:0.4s ease;
+}
+
+.nav-center li a:hover{
+  color:#ffffff;
+}
+
+.nav-center li a:hover::after{
+  width:100%;
+}
+
+/* RIGHT BUTTON */
+
+.login-btn{
+  padding:8px 22px;
+  background:transparent;
+  border:1px solid #d4af37;
+  color:#d4af37;
+  border-radius:6px;
+  cursor:pointer;
+  transition:all 0.3s ease;
+  font-size:14px;
+  margin-left:20px;
+}
+
+.login-btn:hover{
+  background:#d4af37;
+  color:#06142d;
+  transform:translateY(-3px);
+  box-shadow:0 8px 20px rgba(212,175,55,0.4);
+}
+
+/* RESPONSIVE */
+
+@media(max-width:900px){
+  .nav-center{
+    display:none;
+  }
+}
+/* ================= HERO ================= */
+
+.contact-container{
+  max-width:1200px;
+  margin-left:auto;
+  margin-right: auto;
+  padding:40px;
+  background:linear-gradient(135deg,#142d8f,#0b1f5c);
+  border-radius:20px;
+  display:flex;
+  justify-content:space-between;
+  gap:60px;
+  margin-bottom: 20px;
+  margin-top: 119px;
+}
+
+/* LEFT SIDE */
+.contact-left{
+  flex:1;
+}
+
+.contact-left h5{
+  letter-spacing:4px;
+  font-weight:300;
+  margin-bottom:20px;
+}
+
+.contact-left h1{
+  font-size:56px;
+  line-height:1.2;
+  margin-bottom:25px;
+}
+
+.contact-left h1 span{
+  color:#f4c542;
+}
+
+.contact-left p{
+  color:#d6d6d6;
+  margin-bottom:40px;
+  line-height:1.6;
+}
+
+.contact-info{
+  display:flex;
+  flex-direction:column;
+  gap:20px;
+}
+
+.contact-info a{
+  display:flex;
+  align-items:center;
+  gap:15px;
+  text-decoration:none;
+  color:white;
+  transition:0.3s;
+}
+
+.contact-info a:hover{
+  color:#f4c542;
+  cursor:pointer;
+}
+
+.icon{
+  background:#f4c542;
+  color:#0b1f5c;
+  width:45px;
+  height:45px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:bold;
+}
+
+/* RIGHT SIDE */
+.contact-right{
+  flex:1;
+}
+
+form{
+  display:flex;
+  flex-direction:column;
+  gap:20px;
+}
+
+input, textarea{
+  padding:15px;
+  border-radius:12px;
+  border:none;
+  outline:none;
+  font-size:15px;
+}
+
+.row{
+  display:flex;
+  gap:20px;
+}
+
+textarea{
+  resize:none;
+  height:150px;
+}
+
+button{
+  background:#f4c542;
+  color:black;
+  border:none;
+  padding:15px;
+  border-radius:12px;
+  font-weight:600;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+button:hover{
+  background:#ffd84d;
+}
+
+/* Responsive */
+@media(max-width:900px){
+  .contact-container{
+    flex-direction:column;
+  }
+
+  .row{
+    flex-direction:column;
+  }
+}
+</style>
+</head>
+
+<body>
+
+
+<header class="main-header">
+  <nav class="navbar">
+
+    <!-- Logo -->
+    <div class="nav-left">
+      <img src="Images/tingey-injury-law-firm-DZpc4UY8ZtY-unsplash.jpg" alt="Logo">
+      <span class="company-name">Digital Court Companion</span>
+    </div>
+
+    <!-- Center Links -->
+    <ul class="nav-center">
+      <li><a href="#">Home</a></li>
+      <li><a href="#">About Us</a></li>
+      <li><a href="#">Services</a></li>
+      <li><a href="#">Contact Us</a></li>
+    </ul>
+
+    <!-- Right Button -->
+    <div class="nav-right">
+      <button class="login-btn">Login</button>
+    </div>
+
+  </nav>
+</header>
+
+
+<div class="contact-container">
+
+  <!-- LEFT -->
+  <div class="contact-left">
+    <h5>GET IN TOUCH</h5>
+    <h1><span>Convey Your</span><br>Ideas to Us</h1>
+    <p>
+      Contact us for questions, technical assistance, or collaboration opportunities
+      via the contact information provided.
+    </p>
+
+    <div class="contact-info">
+
+      <a href="tel:+1234567890">
+        <div class="icon">📞</div>
+        +123-456-7890
+      </a>
+
+      <a href="mailto:yourmail@example.com">
+        <div class="icon">✉</div>
+        yourmail@example.com
+      </a>
+
+      <a href="https://maps.google.com?q=123 Anywhere St, Any City, 12345" target="_blank">
+        <div class="icon">📍</div>
+        123 Anywhere St, Any City, 12345
+      </a>
+
+    </div>
+  </div>
+
+  <!-- RIGHT -->
+  <div class="contact-right">
+
+    <!-- FORM (Formspree Integration) -->
+    <form action="????" method="POST">
+
+      <input type="text" name="name" placeholder="Name" required>
+
+      <div class="row">
+        <input type="email" name="email" placeholder="Email" required>
+        <input type="tel" name="phone" placeholder="Phone Number" required>
+      </div>
+
+      <textarea name="message" placeholder="Message" required></textarea>
+
+      <button type="submit">SUBMIT NOW</button>
+
+    </form>
+
+  </div>
+
+</div>
+
+</body>
+</html>

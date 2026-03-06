@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Student Register</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  font-family:'Poppins', sans-serif;
+  background: linear-gradient(135deg,#0b2745,#11365c,#174775);
+  color:#e5e7eb;
+}
+
+/* ================= HEADER (UNCHANGED THEME) ================= */
+
+.main-header{
+    width:100%;
+    background:#13294b;
+    border-bottom:2px solid rgba(255,255,255,0.2);
+}
+
+.navbar{
+    width:100%;
+    max-width:1400px;
+    margin:auto;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:11px 40px;
+}
+
+.nav-left{
+    display:flex;
+    align-items:center;
+    gap:18px;
+    color:white;
+    font-size:22px;
+    font-weight:600;
+}
+
+.nav-left img{
+    width:60px;
+    height:60px;
+    object-fit:cover;
+    border-radius:10px;
+}
+
+.nav-center{
+    list-style:none;
+    display:flex;
+    gap:60px;
+}
+
+.nav-center li a{
+    position: relative;
+    text-decoration: none;
+    color: #e5e7eb;
+    font-size: 14px;
+    font-weight: 400;
+    padding-bottom: 5px;
+    transition: 0.3s ease;
+}
+
+.nav-center li a::after{
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 3px;
+    background-color: #facc15;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+}
+
+.nav-center li a:hover{
+    color: white;
+}
+
+.nav-center li a:hover::after{
+    transform: scaleX(1);
+}
+
+.login-btn{
+    padding:8px 22px;
+    background:transparent;
+    border:2px solid #facc15;
+    color:#facc15;
+    font-size:14px;
+    border-radius:6px;
+    cursor:pointer;
+    transition:0.3s ease;
+}
+
+.login-btn:hover{
+    background:#facc15;
+    color:#13294b;
+}
+
+/* ================= REGISTER SECTION ================= */
+
+.register-section{
+  width:100%;
+  min-height:calc(100vh - 84px);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:40px 20px;
+}
+
+.register-card{
+  width:100%;
+  max-width:520px;
+  background:rgba(255,255,255,0.05);
+  padding:40px 35px;
+  border-radius:12px;
+  backdrop-filter:blur(10px);
+}
+
+.register-card h2{
+  text-align:center;
+  font-size:28px;
+  font-weight:600;
+  margin-bottom:35px;
+  color:white;
+}
+
+.form-row{
+  display:flex;
+  gap:16px;
+  margin-bottom:20px;
+}
+
+.form-group{
+  flex:1;
+  display:flex;
+  flex-direction:column;
+}
+
+.form-group.full{
+  width:100%;
+  margin-bottom:20px;
+}
+
+label{
+  font-size:13px;
+  margin-bottom:6px;
+  color:#cbd5e1;
+}
+
+input, select{
+  height:40px;
+  padding:0 12px;
+  border-radius:8px;
+  border:1px solid rgba(255,255,255,0.1);
+  background:rgba(255,255,255,0.08);
+  color:white;
+  font-size:13px;
+  outline:none;
+  transition:0.2s ease;
+}
+
+input::placeholder{
+  color:#94a3b8;
+}
+
+input:focus, select:focus{
+  border-color:#3f6fb5;
+  background:rgba(255,255,255,0.12);
+}
+
+.register-btn{
+  width:100%;
+  height:42px;
+  margin-top:10px;
+  border:none;
+  border-radius:8px;
+  background:linear-gradient(90deg,#2b4c7e,#3f6fb5);
+  color:white;
+  font-size:14px;
+  font-weight:500;
+  cursor:pointer;
+  transition:0.2s ease;
+}
+
+.register-btn:hover{
+  opacity:0.9;
+}
+
+.form-message{
+  margin-top:15px;
+  font-size:13px;
+  text-align:center;
+}
+
+@media(max-width:600px){
+  .form-row{
+    flex-direction:column;
+  }
+}select {
+  height: 40px;
+  padding: 0 12px;
+  border-radius: 8px;
+  border: 1px solid rgba(255,255,255,0.15);
+  background-color: #2f4f7f;   /* Blue background */
+  color: #ffffff;
+  font-size: 13px;
+  outline: none;
+}
+
+select option {
+  background-color: #2f4f7f;   /* Blue dropdown list */
+  color: #ffffff;
+}
+</style>
+</head>
+
+<body>
+
+<header class="main-header">
+  <nav class="navbar">
+    <div class="nav-left">
+      <img src="Images/tingey-injury-law-firm-DZpc4UY8ZtY-unsplash.jpg" alt="Logo">
+      Digital Court Companion
+    </div>
+
+    <ul class="nav-center">
+      <li><a href="#">Home</a></li>
+      <li><a href="#">About Us</a></li>
+      <li><a href="#">Services</a></li>
+      <li><a href="#">Contact Us</a></li>
+    </ul>
+
+    <button class="login-btn">Login</button>
+  </nav>
+</header>
+
+<section class="register-section">
+  <div class="register-card">
+
+    <h2>Sign In </h2>
+
+    <!-- Backend Ready -->
+    <form id="registerForm" method="POST" action="/register">
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>First Name</label>
+          <input type="text" name="firstName" required>
+        </div>
+
+        <div class="form-group">
+          <label>Last Name</label>
+          <input type="text" name="lastName" required>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>Age</label>
+          <input type="number" name="age" min="1" max="120" required>
+        </div>
+
+        <div class="form-group">
+          <label>Gender</label>
+          <select name="gender" required>
+            <option value="">Select Gender</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group full">
+        <label>Qualification</label>
+        <input type="text" name="qualification" required>
+      </div>
+
+      <div class="form-group full">
+        <label>Email</label>
+        <input type="email" name="email" required>
+      </div>
+
+      <div class="form-group full">
+        <label>Password</label>
+        <input type="password" name="password" minlength="6" required>
+      </div>
+
+      <button type="submit" class="register-btn">Register</button>
+      <div id="formMessage" class="form-message"></div>
+
+    </form>
+
+  </div>
+</section>
+
+<script>
+const form = document.getElementById("registerForm");
+const messageBox = document.getElementById("formMessage");
+
+form.addEventListener("submit", async function(e){
+  e.preventDefault();
+
+  const formData = new FormData(form);
+  const data = Object.fromEntries(formData.entries());
+
+  if(data.gender === ""){
+    showMessage("Please select gender", "salmon");
+    return;
+  }
+
+  if(data.password.length < 6){
+    showMessage("Password must be at least 6 characters", "salmon");
+    return;
+  }
+
+  showMessage("Submitting...", "#cbd5e1");
+
+  try{
+    // Future backend ready
+    const response = await fetch(form.action, {
+      method: form.method,
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data)
+    });
+
+    if(response.ok){
+      showMessage("Registration Successful ✅", "lightgreen");
+      form.reset();
+    }else{
+      showMessage("Server error. Try again.", "salmon");
+    }
+
+  }catch(error){
+    showMessage("Backend not connected yet. Frontend validated ✔", "#facc15");
+  }
+});
+
+function showMessage(text,color){
+  messageBox.textContent = text;
+  messageBox.style.color = color;
+}
+</script>
+
+</body>
+</html>

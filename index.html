@@ -1,0 +1,1455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DCC | Digital Court Companion</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+/* ===== GLOBAL ===== */
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  font-family:'Poppins', sans-serif;
+  background:#f8fafc;
+  color:#0f172a;
+}
+
+section{
+  padding:120px 10%;
+}
+
+h1,h2,h3{
+  font-weight:700;
+}
+
+/* ================= HEADER ================= */
+
+.main-header{
+  position:sticky;
+  top:0;
+  width:100%;
+  z-index:1000;
+  backdrop-filter: blur(8px);
+  background:#06142d;
+  border-bottom:1px solid rgba(255,255,255,0.05);
+}
+
+.navbar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:18px 10%;
+}
+
+/* LEFT LOGO */
+
+.nav-left{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  font-size:22px;
+  font-weight:600;
+  color:#d4af37;
+}
+
+.nav-left img{
+  width:36px;
+}
+
+/* CENTER LINKS */
+
+.nav-center{
+  list-style:none;
+  display:flex;
+  gap:45px;
+}
+
+.nav-center li a{
+  text-decoration:none;
+  color:#e2e8f0;
+  font-size:15px;
+  position:relative;
+  transition:0.3s;
+}
+
+/* Hover underline animation */
+.nav-center li a::after{
+  content:"";
+  position:absolute;
+  width:0%;
+  height:2px;
+  bottom:-6px;
+  left:0;
+  background:#d4af37;
+  transition:0.3s;
+}
+
+.nav-center li a:hover{
+  color:#ffffff;
+}
+
+.nav-center li a:hover::after{
+  width:100%;
+}
+
+/* RIGHT BUTTON */
+
+.login-btn{
+  padding:8px 22px;
+  background:transparent;
+  border:1px solid #d4af37;
+  color:#d4af37;
+  border-radius:6px;
+  cursor:pointer;
+  transition:0.3s;
+  font-size:14px;
+}
+
+.login-btn:hover{
+  background:#d4af37;
+  color:#06142d;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:900px){
+
+  .nav-center{
+    display:none;
+  }
+
+} 
+
+
+
+
+
+
+/* ===== HERO ===== */
+
+.hero{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  min-height:90vh;
+}
+
+.hero-text{
+  width:55%;
+}
+
+.hero-text h1{
+  font-size:60px;
+  line-height:1.2;
+  margin-bottom:30px;
+}
+
+.hero-text span{
+  color:#2563eb;
+}
+
+.hero-text p{
+  font-size:20px;
+  margin-bottom:40px;
+  color:#475569;
+}
+
+.hero-btn{
+  padding:15px 35px;
+  background:#2563eb;
+  color:white;
+  border:none;
+  border-radius:6px;
+  font-size:18px;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+.hero-btn:hover{
+  background:#1e40af;
+}
+
+.hero-img{
+  width:40%;
+}
+
+.hero-img img{
+  width:100%;
+}
+
+/* ===== PROBLEM SECTION ===== */
+
+.problem{
+  background:#e2e8f0;
+  text-align:center;
+}
+
+.problem h2{
+  font-size:40px;
+  margin-bottom:30px;
+}
+
+.problem p{
+  max-width:800px;
+  margin:auto;
+  font-size:20px;
+  color:#334155;
+}
+
+/* ===== SERVICES ===== */
+
+.services{
+  text-align:center;
+}
+
+.services h2{
+  font-size:40px;
+  margin-bottom:80px;
+}
+
+.cards{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:40px;
+}
+
+.card{
+  background:white;
+  padding:50px 30px;
+  border-radius:12px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.05);
+  transition:0.3s;
+}
+
+.card:hover{
+  transform:translateY(-10px);
+}
+
+.card h3{
+  margin-bottom:20px;
+}
+
+.card p{
+  color:#475569;
+  margin-bottom:30px;
+}
+
+.card button{
+  padding:10px 20px;
+  border:none;
+  background:#2563eb;
+  color:white;
+  border-radius:6px;
+  cursor:pointer;
+}
+
+/* ===== STATS ===== */
+
+.stats{
+  background:#0f172a;
+  color:white;
+  text-align:center;
+}
+
+.stats-container{
+  display:flex;
+  justify-content:space-around;
+  flex-wrap:wrap;
+}
+
+.stat{
+  margin:30px;
+}
+
+.stat h3{
+  font-size:40px;
+}
+
+.stat p{
+  color:#cbd5e1;
+}
+
+/* ===== CTA ===== */
+
+.cta{
+  text-align:center;
+}
+
+.cta h2{
+  font-size:40px;
+  margin-bottom:30px;
+}
+
+.cta button{
+  padding:15px 35px;
+  background:#0f172a;
+  color:white;
+  border:none;
+  border-radius:6px;
+  font-size:18px;
+  cursor:pointer;
+}
+
+/* ===== FOOTER ===== */
+
+footer{
+  background:#f1f5f9;
+  text-align:center;
+  padding:40px;
+  color:#475569;
+}
+
+/* ================= FOOTER ================= */
+
+.main-footer{
+  background:#06142d;
+  color:#cbd5e1;
+  padding:80px 10% 30px;
+}
+
+.footer-container{
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(220px, 1fr));
+  gap:60px;
+}
+
+.footer-col h4{
+  color:#d4af37;
+  margin-bottom:25px;
+  font-size:18px;
+  letter-spacing:1px;
+}
+
+.footer-col p{
+  font-size:14px;
+  line-height:1.4;
+  margin-bottom:20px;
+}
+
+.footer-col ul{
+  list-style:none;
+}
+
+.footer-col ul li{
+  margin-bottom:15px;
+}
+
+.footer-col ul li a{
+  text-decoration:none;
+  color:#cbd5e1;
+  font-size:14px;
+  transition:0.3s;
+}
+
+.footer-col ul li a:hover{
+  color:#d4af37;
+  padding-left:5px;
+}
+
+/* Brand Section */
+
+.footer-logo{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin-bottom:20px;
+}
+
+.footer-logo img{
+  width:35px;
+}
+
+.footer-logo h3{
+  color:#d4af37;
+  font-size:22px;
+}
+
+.social-icons{
+  margin-top:20px;
+}
+
+.social-icons a{
+  display:inline-block;
+  width:35px;
+  height:35px;
+  line-height:35px;
+  text-align:center;
+  border:1px solid #d4af37;
+  border-radius:50%;
+  margin-right:10px;
+  text-decoration:none;
+  color:#d4af37;
+  font-size:14px;
+  transition:0.3s;
+}
+
+.social-icons a:hover{
+  background:#d4af37;
+  color:#06142d;
+}
+
+/* Bottom Strip */
+
+.footer-bottom{
+  text-align:center;
+  border-top:1px solid rgba(255,255,255,0.1);
+  margin-top:60px;
+  padding-top:20px;
+  font-size:13px;
+  color:#94a3b8;
+}
+
+@media(max-width:900px){
+
+.hero{
+  flex-direction:column;
+  text-align:center;
+}
+
+.hero-text, .hero-img{
+  width:100%;
+}
+
+.hero-text h1{
+  font-size:40px;
+}
+
+}
+/* ================= PREMIUM HEADER ================= */
+
+.main-header{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  z-index:1000;
+  background:rgba(6,20,45,0.95);
+  backdrop-filter: blur(10px);
+  transition:transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+/* Hidden state */
+.main-header.hide{
+  transform:translateY(-100%);
+}
+
+/* Shadow when scrolling */
+.main-header.scrolled{
+  box-shadow:0 10px 30px rgba(0,0,0,0.4);
+}
+
+.navbar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:18px 10%;
+}
+
+/* Logo */
+
+.nav-left{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  font-size:22px;
+  font-weight:600;
+  color:#d4af37;
+  animation:fadeInDown 1s ease forwards;
+}
+
+.nav-left img{
+  width:36px;
+  transition:transform 0.3s ease;
+}
+
+.nav-left:hover img{
+  transform:rotate(-8deg) scale(1.1);
+}
+
+/* Links */
+
+.nav-center{
+  list-style:none;
+  display:flex;
+  gap:45px;
+}
+
+.nav-center li a{
+  text-decoration:none;
+  color:#e2e8f0;
+  font-size:15px;
+  position:relative;
+  transition:0.3s;
+}
+
+/* Underline animation */
+
+.nav-center li a::after{
+  content:"";
+  position:absolute;
+  width:0%;
+  height:2px;
+  bottom:-6px;
+  left:0;
+  background:#d4af37;
+  transition:0.4s ease;
+}
+
+.nav-center li a:hover::after{
+  width:100%;
+}
+
+.nav-center li a:hover{
+  color:#ffffff;
+}
+
+/* Login Button */
+
+.login-btn{
+  padding:8px 22px;
+  background:transparent;
+  border:1px solid #d4af37;
+  color:#d4af37;
+  border-radius:6px;
+  cursor:pointer;
+  transition:all 0.3s ease;
+  font-size:14px;
+}
+
+.login-btn:hover{
+  background:#d4af37;
+  color:#06142d;
+  transform:translateY(-3px);
+  box-shadow:0 8px 20px rgba(212,175,55,0.4);
+}
+
+/* Smooth load animation */
+
+@keyframes fadeInDown{
+  from{
+    opacity:0;
+    transform:translateY(-20px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+.hero-img{
+  width:45%;
+  position:relative;
+  display:flex;
+  justify-content:center;
+}
+
+.hero-img img{
+  width:100%;
+  border-radius:20px;
+  box-shadow:0 40px 80px rgba(0,0,0,0.4);
+  transition:transform 0.6s ease;
+  animation:float 4s ease-in-out infinite;
+}
+
+/* Floating animation */
+@keyframes float{
+  0% { transform:translateY(0px); }
+  50% { transform:translateY(-15px); }
+  100% { transform:translateY(0px); }
+}
+
+/* Glow effect behind image */
+.hero-img::before{
+  content:"";
+  position:absolute;
+  width:300px;
+  height:300px;
+  background:radial-gradient(circle, rgba(212,175,55,0.3), transparent);
+  filter:blur(60px);
+  z-index:-1;
+}
+/* ================= SERVICES SECTION ================= */
+
+.services{
+  padding:160px 8%;
+  background:#f8fafc;
+}
+
+.services h2{
+  text-align:center;
+  font-size:52px;
+  font-weight:700;
+  margin-bottom:100px;
+  color:#0f172a;
+  letter-spacing:-1px;
+}
+
+/* FORCE SINGLE ROW */
+.cards{
+  display:flex;
+  justify-content:space-between;
+  gap:40px;
+}
+
+/* ================= PREMIUM CARD ================= */
+
+.card{
+  flex:1; /* Equal width */
+  background:white;
+  padding:70px 45px;
+  border-radius:28px;
+  position:relative;
+  overflow:hidden;
+
+  transition:all 0.5s cubic-bezier(.19,1,.22,1);
+
+  box-shadow:
+    0 10px 30px rgba(15,23,42,0.05),
+    0 40px 80px rgba(15,23,42,0.04);
+}
+
+/* Subtle top gradient accent */
+.card::before{
+  content:"";
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:6px;
+  background:linear-gradient(90deg, #06142d, #d4af37);
+  opacity:0.85;
+}
+
+/* Elegant hover lift */
+.card:hover{
+  transform:translateY(-20px);
+  box-shadow:
+    0 25px 60px rgba(15,23,42,0.08),
+    0 50px 120px rgba(15,23,42,0.1);
+}
+
+/* Typography */
+
+.card h3{
+  font-size:28px;
+  font-weight:600;
+  margin-bottom:24px;
+  color:#06142d;
+}
+
+.card p{
+  font-size:18px;
+  line-height:1.7;
+  color:#475569;
+  margin-bottom:40px;
+}
+
+/* Button - clean luxury style */
+
+.card button{
+  padding:14px 30px;
+  border-radius:10px;
+  background:#06142d;
+  color:white;
+  border:none;
+  font-size:15px;
+  letter-spacing:0.5px;
+  transition:all 0.3s ease;
+  cursor:pointer;
+}
+
+.card button:hover{
+  background:#d4af37;
+  color:#06142d;
+  transform:translateY(-2px);
+}
+@media(max-width:1200px){
+  .cards{
+    flex-direction:column;
+  }
+}
+.services{
+  position: relative;
+  padding: 160px 8%;
+  background-color: #f4f7fb;
+  overflow: hidden;
+}
+
+/* Subtle grid pattern */
+.services::before{
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(rgba(6,20,45,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(6,20,45,0.04) 1px, transparent 1px);
+  background-size: 60px 60px;
+  z-index: 0;
+}
+
+/* Soft gold ambient glow */
+.services::after{
+  content: "";
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(212,175,55,0.18), transparent 60%);
+  top: -200px;
+  right: -200px;
+  filter: blur(120px);
+  z-index: 0;
+}
+
+/* Make sure content stays above */
+.services h2,
+.cards{
+  position: relative;
+  z-index: 2;
+}
+.testimonial-section{
+  padding:180px 8%;
+  background:#e9eff6;
+}
+
+.testimonial-wrapper{
+  background:#f4f7fb;
+  border-radius:40px;
+  padding:100px 60px;
+  position:relative;
+  text-align:center;
+  overflow:hidden;
+}
+
+.testimonial-wrapper h2{
+  font-size:36px;
+  margin-bottom:80px;
+  position:relative;
+}
+
+.testimonial-wrapper h2::after{
+  content:"";
+  width:60px;
+  height:3px;
+  background:#ff4d4d;
+  display:block;
+  margin:10px auto 0;
+  border-radius:5px;
+}
+
+/* Track */
+
+.testimonial-track{
+  display:flex;
+  gap:40px;
+  transition:transform 0.6s ease;
+}
+
+/* Cards */
+
+.testimonial-card{
+  min-width:260px;
+  background:white;
+  padding:60px 30px;
+  border-radius:20px;
+  box-shadow:0 20px 40px rgba(0,0,0,0.06);
+  transition:all 0.4s ease;
+  position:relative;
+  cursor:pointer;
+}
+
+.testimonial-card.active{
+  transform:scale(1.2);
+  box-shadow:0 40px 80px rgba(0,0,0,0.12);
+}
+
+.testimonial-card:hover{
+  transform:scale(1.2);
+  z-index:2;
+  box-shadow:0 40px 80px rgba(0,0,0,0.15);
+}
+
+/* Avatar */
+
+.avatar{
+  width:70px;
+  height:70px;
+  border-radius:50%;
+  object-fit:cover;
+  margin-bottom:20px;
+}
+
+/* Text */
+
+.testimonial-card p{
+  font-size:14px;
+  color:#555;
+  line-height:1.6;
+  margin-bottom:20px;
+}
+
+.testimonial-card h4{
+  font-size:14px;
+  font-weight:600;
+  margin-bottom:5px;
+}
+
+.testimonial-card span{
+  font-size:12px;
+  color:#888;
+}
+
+/* Navigation */
+
+.nav{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  width:45px;
+  height:45px;
+  border-radius:50%;
+  border:none;
+  background:white;
+  box-shadow:0 10px 20px rgba(0,0,0,0.1);
+  cursor:pointer;
+  font-size:18px;
+  transition:0.3s ease;
+}
+
+.nav:hover{
+  transform:translateY(-50%) scale(1.1);
+}
+
+.nav.left{
+  left:10px;
+}
+
+.nav.right{
+  right:10px;
+}
+/* Ensure wrapper allows layering */
+.testimonial-wrapper{
+  position:relative;
+}
+
+/* Put arrows ABOVE everything */
+.nav{
+  z-index: 1000;
+}
+
+/* Lower card stacking */
+.testimonial-card{
+  position: relative;
+  z-index: 1;
+}
+
+.testimonial-card.active{
+  z-index: 2;
+}
+.testimonial-card.active{
+  transform:scale(1.15);
+}
+.nav.left{
+  left:-25px;
+}
+
+.nav.right{
+  right:-25px;
+}.testimonial-section{
+  padding:180px 6.5%;
+}.testimonial-wrapper{
+  background:#f4f7fb;
+  border-radius:40px;
+  padding:100px 100px; /* increased side padding */
+  position:relative;
+}.nav{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  width:55px;
+  height:55px;
+  border-radius:50%;
+  border:none;
+  background:white;
+  box-shadow:0 15px 35px rgba(0,0,0,0.12);
+  cursor:pointer;
+  font-size:20px;
+  transition:all 0.35s ease;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index:1000;
+}
+
+.nav.left{
+  left:25px;
+}
+
+.nav.right{
+  right:25px;
+}.nav::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  border-radius:50%;
+  background:rgba(0,0,0,0.05);
+  opacity:0;
+  transition:0.3s ease;
+}
+
+.nav:hover::after{
+  opacity:1;
+  transform:scale(1.2);
+}
+/* ===== NAVBAR LEFT (LOGO + BRAND) ===== */
+
+.nav-left{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.nav-left img{
+  width:55px;
+  height:55px;
+  object-fit:cover;
+  border-radius:8px;
+}
+
+/* BRAND NAME */
+.nav-left .company-name{
+  font-size:21px;
+  font-weight:700;
+  color:#ffffff;   /* fully visible */
+  letter-spacing:0.5px;
+  white-space:nowrap;
+}.nav-left{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin-left:-60px;  /* shifts it left */
+}
+.login-btn{
+  margin-left:20px;   /* pushes it right */
+}
+.nav-left:hover{
+  cursor: pointer;
+
+}
+/* ===== MODAL ===== */
+
+.modal{
+  display:none;
+  position:fixed;
+  z-index:2000;
+  left:0;
+  top:0;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.6);
+  justify-content:center;
+  align-items:center;
+}
+
+.modal-content{
+  background:white;
+  padding:40px;
+  border-radius:12px;
+  text-align:center;
+  width:320px;
+  position:relative;
+}
+
+.modal-content h3{
+  margin-bottom:25px;
+}
+
+.designation-options{
+  display:flex;
+  flex-direction:column;
+  gap:15px;
+}
+
+.designation-options button{
+  padding:12px;
+  border:none;
+  background:#06142d;
+  color:white;
+  border-radius:6px;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+.designation-options button:hover{
+  background:#d4af37;
+  color:#06142d;
+}
+
+.close{
+  position:absolute;
+  right:15px;
+  top:10px;
+  font-size:22px;
+  cursor:pointer;
+}
+
+
+
+
+
+</style>
+</head>
+
+<body>
+
+<header class="main-header">
+  <nav class="navbar">
+
+    <!-- Logo -->
+    <div class="nav-left">
+      <img src="Images/tingey-injury-law-firm-DZpc4UY8ZtY-unsplash.jpg" alt="Logo">
+      <span class="company-name">Digital Court Companion</span>
+    </div>
+
+    <!-- Center Links -->
+    <ul class="nav-center">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="About-Us.html">About Us</a></li>
+      <li><a href="Our-Services.html">Services</a></li>
+      <li><a href="Contact-Us.html">Contact Us</a></li>
+    </ul>
+
+    <!-- Right Button -->
+    <div class="nav-right">
+      <a href="Actual-Sign-In.html"><button class="login-btn">Login</button></a>
+    </div>
+
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="hero-text">
+    <h1>Reimagining the <span>Judicial Ecosystem</span> Digitally</h1>
+    <p>DCC bridges the gap between citizens, lawyers, and the judiciary with a secure, transparent and scalable platform.</p>
+     <a href="Actual-Sign-In.html"><button class="hero-btn">Get Started</button></a>
+  </div>
+  
+  <div class="hero-img">
+    <img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f">
+  </div>
+</section>
+
+<section class="problem">
+  <h2>The Problem We Solve</h2>
+  <p>Legal systems are fragmented, slow, and difficult to access. Citizens struggle to find verified lawyers, track case progress, and understand procedures. DCC simplifies this entire journey.</p>
+</section>
+
+<section class="services">
+  <h2>Our Services</h2>
+  <div class="cards">
+
+    <div class="card">
+      <h3>For Litigants</h3>
+      <p>Find verified lawyers and track case status easily.</p>
+      <a href="Litigants-Two-Choice.html"><button>Explore</button></a>
+    </div>
+
+    <div class="card">
+      <h3>For Lawyers</h3>
+      <p>Manage clients and grow your digital presence.</p>
+      <a href="Advocate-Dashboard.html"><button>Explore</button></a>
+    </div>
+
+    <div class="card">
+      <h3>For Judiciary</h3>
+      <p>Improve transparency and case validation.</p>
+      <button id="judiciaryBtn">Explore</button>
+    </div>
+
+    <div class="card">
+      <h3>For Students</h3>
+      <p>Access legal resources and landmark cases.</p>
+      <a href="Student/Student-Page.html"><button>Explore</button></a>
+    </div>
+
+  </div>
+</section>
+
+<section class="stats">
+  <div class="stats-container">
+    <div class="stat">
+      <h3 class="counter" data-target="10000">0</h3>
+      <p>Users Expected</p>
+    </div>
+    <div class="stat">
+      <h3 class="counter" data-target="500">0</h3>
+      <p>Verified Lawyers</p>
+    </div>
+    <div class="stat">
+      <h3 class="counter" data-target="100">0</h3>
+      <p>Cases Solved </p>
+    </div>
+    <div class="stat">
+      <h3 class="counter" data-target="100">0</h3>
+      <p>Transparency Focused</p>
+    </div>
+  </div>
+</section>
+
+<section class="testimonial-section">
+
+  <div class="testimonial-wrapper">
+
+    <h2>What our Clients say!</h2>
+
+    <button class="nav left">&#10094;</button>
+
+    <div class="testimonial-track">
+
+      <div class="testimonial-card">
+        <img src="https://i.pravatar.cc/80?img=1" class="avatar">
+        <p>I was going through a serious issue and they handled everything professionally and transparently.</p>
+        <h4>John Doe</h4>
+        <span>Litigant</span>
+      </div>
+
+      <div class="testimonial-card">
+        <img src="https://i.pravatar.cc/80?img=2" class="avatar">
+        <p>This platform completely restructured my legal workflow and client management.</p>
+        <h4>Ana Walker</h4>
+        <span>Senior Advocate</span>
+      </div>
+
+      <div class="testimonial-card active">
+        <img src="https://i.pravatar.cc/80?img=3" class="avatar">
+        <p>They are great. They did exactly what I needed. The friendly support solved my problem quickly.</p>
+        <h4>Zahid Miles</h4>
+        <span>District Judge</span>
+      </div>
+
+      <div class="testimonial-card">
+        <img src="https://i.pravatar.cc/80?img=4" class="avatar">
+        <p>Extremely structured and reliable. Transparency is the strongest feature.</p>
+        <h4>Casper Leigh</h4>
+        <span>High Court Judge</span>
+      </div>
+
+      <div class="testimonial-card">
+        <img src="https://i.pravatar.cc/80?img=5" class="avatar">
+        <p>Professional ecosystem for legal modernization.</p>
+        <h4>Clara James</h4>
+        <span>Corporate Counsel</span>
+      </div>
+
+    </div>
+
+    <button class="nav right">&#10095;</button>
+
+  </div>
+
+</section>
+
+<section class="cta">
+  <h2>Join the Digital Legal Revolution</h2>
+  <a href="Four-Registration.html"><button>Register Now</button></a>
+</section>
+
+<footer class="main-footer">
+
+  <div class="footer-container">
+
+    <!-- Column 1 -->
+    <div class="footer-col brand">
+      <div class="footer-logo">
+        <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png">
+        <h3>Digital Court Companion</h3>
+      </div>
+
+      <p>
+        India's most trusted legal platform — bridging citizens,
+        lawyers, judges, and students with the power of technology
+        and transparency.
+      </p>
+
+      <div class="social-icons">
+        <a href="#">X</a>
+        <a href="#">in</a>
+        <a href="#">f</a>
+        <a href="#">ig</a>
+      </div>
+    </div>
+
+    <!-- Column 2 -->
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="#"> Home</a></li>
+        <li><a href="About-Us.html"> About Us</a></li>
+        <li><a href="Our-Services.html"> Services</a></li>
+        <li><a href="Contact-Us.html"> Contact Us</a></li>
+        <li><a href="https://drive.google.com/file/d/12aYELCmXfK69_VDMBF9dzfJdTf7tpibL/view?usp=drivesdk"> Privacy Policy</a></li>
+        <li><a href="https://drive.google.com/file/d/12QyU473kGNxNZ2pbxxt-NEKdh1xJ7aOp/view?usp=drivesdk"> Terms & Conditions</a></li>
+      </ul>
+    </div>
+
+    <!-- Column 3 -->
+    <div class="footer-col">
+      <h4>Our Services</h4>
+      <ul>
+        <li><a href="Find-a-Lawyer/lawyers.html"> Find a Lawyer</a></li>         
+        <li><a href="#"> </a></li>
+        <li><a href="Student/Student-Page.html"> Legal Resources <br> & <br>internships</a></li>
+        <li><a href="#"> </a></li>
+        <li><a href="Judge-Dashboard.html"> Judge Portal</a></li>
+        <li><a href="Contact-Us.html"> Consultation</a></li>
+      </ul>
+    </div>
+
+    <!-- Column 4 -->
+    <div class="footer-col">
+      <h4>Contact Us</h4>
+
+      <p><strong>Address</strong><br>
+      12, Justice Bhavan, Connaught Place,<br>
+      New Delhi – 110001, India</p>
+
+      <p><strong>Phone</strong><br>
+      +91 98765 43210</p>
+
+      <p><strong>Email</strong><br>
+      contact@dcc.in</p>
+
+      <p><strong>Support Hours</strong><br>
+      Mon – Sat, 9:00 AM – 6:00 PM IST</p>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    © 2026 Digital Companion. All rights reserved. |
+    Made with ⚖️ in India
+  </div>
+
+</footer>
+
+
+<!-- Judiciary Popup -->
+
+<div id="judiciaryModal" class="modal">
+
+  <div class="modal-content">
+
+    <span class="close">&times;</span>
+
+    <h3>Select Your Designation</h3>
+
+    <div class="designation-options">
+
+      <button onclick="goToPage('Clerk-Dashboard.html')">Clerk</button>
+
+      <button onclick="goToPage('Judge-Dashboard.html')">Judge</button>
+
+      <button onclick="goToPage('Bailiff-Dashboard.html')">Bailiff</button>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+
+// Wait until page loads
+document.addEventListener("DOMContentLoaded", function(){
+
+// -------- COUNTER FUNCTIONALITY (scroll-triggered) --------
+const counters = document.querySelectorAll('.counter');
+
+function updateCounter(counter) {
+    const target = +counter.getAttribute('data-target');
+    const current = +counter.innerText.replace(/\D/g,'');
+
+    const increment = target / 200;
+
+    if (current < target) {
+        counter.innerText = formatCounter(Math.ceil(current + increment), counter);
+        setTimeout(() => updateCounter(counter), 10);
+    } else {
+        counter.innerText = formatCounter(target, counter);
+    }
+}
+
+function formatCounter(value, counter) {
+    if (counter.nextElementSibling && counter.nextElementSibling.innerText.toLowerCase().includes('transparency')) {
+        return value + '%';
+    } else {
+        return value + '+';
+    }
+}
+
+const options = {
+    root: null,
+    threshold: 0.5
+};
+
+function handleIntersect(entries, observer) {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            counters.forEach(counter => updateCounter(counter));
+            observer.unobserve(entry.target);
+        }
+    });
+}
+
+const statsSection = document.querySelector('.stats');
+const observer = new IntersectionObserver(handleIntersect, options);
+observer.observe(statsSection);
+
+
+// -------- HEADER SCROLL BEHAVIOR --------
+let lastScroll = 0;
+const header = document.querySelector('.main-header');
+
+window.addEventListener('scroll', () => {
+    const currentScroll = window.pageYOffset;
+
+    if(currentScroll > 20){
+        header.classList.add('scrolled');
+    } else {
+        header.classList.remove('scrolled');
+    }
+
+    if(currentScroll > lastScroll && currentScroll > 100){
+        header.classList.add('hide');
+    } else {
+        header.classList.remove('hide');
+    }
+
+    lastScroll = currentScroll;
+});
+
+
+// -------- TESTIMONIAL CAROUSEL --------
+const track = document.querySelector('.testimonial-track');
+let cards = document.querySelectorAll('.testimonial-card');
+const next = document.querySelector('.nav.right');
+const prev = document.querySelector('.nav.left');
+
+const gap = 40;
+let index = 1;
+
+const firstClone = cards[0].cloneNode(true);
+const lastClone = cards[cards.length - 1].cloneNode(true);
+
+track.appendChild(firstClone);
+track.insertBefore(lastClone, cards[0]);
+
+cards = document.querySelectorAll('.testimonial-card');
+const cardWidth = cards[0].offsetWidth + gap;
+
+track.style.transform = `translateX(-${cardWidth * index}px)`;
+
+function updateActive() {
+    cards.forEach(card => card.classList.remove('active'));
+    cards[index].classList.add('active');
+}
+
+updateActive();
+
+function moveToSlide() {
+    track.style.transition = "transform 0.6s ease";
+    track.style.transform = `translateX(-${cardWidth * index}px)`;
+    updateActive();
+}
+
+next.addEventListener('click', () => {
+    index++;
+    moveToSlide();
+});
+
+prev.addEventListener('click', () => {
+    index--;
+    moveToSlide();
+});
+
+track.addEventListener('transitionend', () => {
+
+    if (cards[index].isSameNode(firstClone)) {
+        track.style.transition = "none";
+        index = 1;
+        track.style.transform = `translateX(-${cardWidth * index}px)`;
+    }
+
+    if (cards[index].isSameNode(lastClone)) {
+        track.style.transition = "none";
+        index = cards.length - 2;
+        track.style.transform = `translateX(-${cardWidth * index}px)`;
+    }
+
+});
+
+
+// ===== JUDICIARY POPUP =====
+
+const judiciaryBtn = document.getElementById("judiciaryBtn");
+const modal = document.getElementById("judiciaryModal");
+const closeBtn = document.querySelector(".close");
+
+if(judiciaryBtn){
+    judiciaryBtn.addEventListener("click", function(){
+        modal.style.display = "flex";
+    });
+}
+
+if(closeBtn){
+    closeBtn.addEventListener("click", function(){
+        modal.style.display = "none";
+    });
+}
+
+window.addEventListener("click", function(event){
+    if(event.target === modal){
+        modal.style.display = "none";
+    }
+});
+
+});
+
+// redirect function
+function goToPage(page){
+    window.location.href = page;
+}
+
+</script>
+
+
+
+</body>
+</html>

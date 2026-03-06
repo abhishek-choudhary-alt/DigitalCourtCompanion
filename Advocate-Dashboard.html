@@ -1,0 +1,475 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Advocate Dashboard - Digital Court Companion</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Poppins',sans-serif;background:#f1f5f9;color:#0f172a}
+
+.main-header{
+    width:100%;
+    background:#13294b;
+    border-bottom:2px solid rgba(255,255,255,0.2);
+}
+
+.navbar{
+    width:100%;
+    max-width:1400px;
+    margin:auto;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:11px 40px;
+}
+
+/* LEFT SIDE */
+
+.nav-left{
+    display:flex;
+    align-items:center;
+    gap:18px;
+    color:white;
+    font-size:22px;
+    font-weight:600;
+}
+
+.nav-left img{
+    width:60px;
+    height:60px;
+    object-fit:cover;
+    border-radius:10px;
+}
+
+/* CENTER LINKS */
+
+.nav-center{
+    list-style:none;
+    display:flex;
+    gap:60px;
+}
+
+.nav-center li a{
+    text-decoration:none;
+    color:#e5e7eb;
+    font-size:14px;
+    font-weight:400;
+    padding-bottom:5px;
+    transition:0.2s ease;
+}
+
+.nav-center li a{
+    position: relative;
+    text-decoration: none;
+    color: #e5e7eb;
+    font-size: 14px;
+    font-weight: 400;
+    padding-bottom: 5px;
+    transition: 0.3s ease;
+}
+
+/* Yellow animated underline */
+.nav-center li a::after{
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 3px;
+    background-color: #facc15;
+
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+}
+
+/* On hover */
+.nav-center li a:hover{
+    color: white;
+}
+
+.nav-center li a:hover::after{
+    transform: scaleX(1);
+}
+
+/* LOGIN BUTTON */
+
+.login-btn{
+    padding:10px 28px;
+    background:transparent;
+    border:2px solid #facc15;
+    color:#facc15;
+    font-size:14px;
+    border-radius:8px;
+    cursor:pointer;
+    transition:0.3s ease;
+}
+
+.login-btn:hover{
+    background:#facc15;
+    color:#13294b;
+}
+
+/* DASHBOARD */
+.dashboard{max-width:1200px;margin:50px auto;padding:0 30px}
+.section{background:white;padding:30px;border-radius:18px;margin-bottom:40px;box-shadow:0 8px 30px rgba(0,0,0,0.05)}
+.section h2{margin-bottom:20px}
+
+/* CARDS */
+.cases-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:20px}
+.case-card{background:#f8fafc;padding:20px;border-radius:14px;border:1px solid #e2e8f0}
+
+/* TABLE */
+.filters{display:flex;gap:15px;margin-bottom:20px}
+.filters input,.filters select{padding:8px 12px;border-radius:8px;border:1px solid #dbe3f0}
+table{width:100%;border-collapse:collapse}
+th,td{padding:12px;border-bottom:1px solid #eef2f7;text-align:left}
+
+/* BUTTON */
+.btn{background:#13294b;color:white;border:none;padding:10px 18px;border-radius:8px;cursor:pointer}
+.btn-danger{background:#dc2626}
+
+/* FORM */
+.form-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:15px}
+input,select{padding:8px;border-radius:8px;border:1px solid #dbe3f0}
+
+/* NOTEPAD */
+.notes-wrapper{margin-top:40px}
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;background:#eef2f7;padding:10px;border-radius:12px;margin-bottom:10px}
+.toolbar button{padding:6px 12px;border:none;border-radius:8px;cursor:pointer}
+.toolbar button.active{background:#13294b;color:white}
+.editor-container{position:relative;border:1px solid #dbe3f0;border-radius:12px;overflow:hidden}
+#textEditor{min-height:300px;padding:15px}
+#drawCanvas{position:absolute;top:0;left:0}
+
+</style>
+</head>
+<body>
+
+ <header class="main-header">
+  <nav class="navbar">
+
+    <div class="nav-left">
+      <img src="Images/tingey-injury-law-firm-DZpc4UY8ZtY-unsplash.jpg" alt="Logo">
+      Digital Court Companion
+    </div>
+
+    <ul class="nav-center">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="About-Us.html">About Us</a></li>
+      <li><a href="Our-Services.html">Services</a></li>
+      <li><a href="Contact-Us.html">Contact Us</a></li>
+    </ul>
+
+    <button class="login-btn">Login</button>
+
+  </nav>
+</header>
+<div class="dashboard">
+
+<!-- CASES TODAY -->
+<div class="section">
+<h2>Cases Happening Today</h2>
+<div id="todayCases" class="cases-grid"></div>
+</div>
+
+<!-- CLIENT LIST -->
+<div class="section">
+<h2>Client List</h2>
+
+<div class="filters">
+<input type="text" id="searchInput" placeholder="Search case..." onkeyup="renderClients()">
+<select id="statusFilter" onchange="renderClients()">
+<option value="">All Status</option>
+<option>Ongoing</option>
+<option>Closed</option>
+</select>
+<button class="btn" onclick="openAddClient()">+ Add Client</button>
+</div>
+
+<table>
+<thead>
+<tr>
+<th>Case</th>
+<th>Type</th>
+<th>Status</th>
+<th>Last Date</th>
+<th>Next Date</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody id="clientTable"></tbody>
+</table>
+
+<div id="clientFormContainer" style="display:none;margin-top:20px">
+<div class="form-grid">
+<input id="caseTitle" placeholder="Case Title">
+<input id="caseType" placeholder="Case Type">
+<select id="caseStatus">
+<option>Ongoing</option>
+<option>Closed</option>
+</select>
+<input type="date" id="lastDate">
+<input type="date" id="nextDate">
+<button class="btn" onclick="addClient()">Save</button>
+</div>
+</div>
+
+</div>
+
+<!-- DISCOVER -->
+<div class="section">
+<h2>Discover - Post Internship</h2>
+<div class="form-grid">
+<input id="role" placeholder="Role Description">
+<input id="duration" placeholder="Duration">
+<input id="stipend" placeholder="Stipend">
+<input id="experience" placeholder="Experience Required">
+<button class="btn" onclick="postInternship()">Post</button>
+</div>
+<div id="internshipLog" style="margin-top:20px"></div>
+</div>
+
+<!-- NOTEPAD -->
+<div class="section notes-wrapper">
+<h2>Personal Notepad</h2>
+
+<div class="toolbar">
+<button id="textBtn" onclick="enableText()">Text</button>
+<button id="drawBtn" onclick="enableDraw()">Draw</button>
+<button onclick="clearCanvas()">Clear</button>
+<button onclick="exportPDF()">Export PDF</button>
+</div>
+
+<div class="editor-container">
+<div id="textEditor" contenteditable="true"></div>
+<canvas id="drawCanvas"></canvas>
+</div>
+</div>
+
+</div>
+
+<script>
+/* DATA STORAGE SIMULATION */
+let clients = JSON.parse(localStorage.getItem("clients")) || [];
+let internships = JSON.parse(localStorage.getItem("internships")) || [];
+
+/* CASES TODAY */
+function renderTodayCases(){
+const container=document.getElementById("todayCases");
+container.innerHTML="";
+clients.filter(c=>c.nextDate===new Date().toISOString().split("T")[0])
+.forEach(c=>{
+container.innerHTML+=`
+<div class="case-card">
+<strong>${c.caseTitle}</strong><br>
+Type: ${c.caseType}<br>
+Court: 4<br>
+Judge: Justice A.K. Singh<br>
+Time: 11:30 AM
+</div>`
+});
+}
+
+/* CLIENT CRUD */
+function openAddClient(){
+document.getElementById("clientFormContainer").style.display="block";
+}
+
+function addClient(){
+const newClient={
+id:Date.now(),
+caseTitle:caseTitle.value,
+caseType:caseType.value,
+status:caseStatus.value,
+lastDate:lastDate.value,
+nextDate:nextDate.value
+};
+clients.push(newClient);
+localStorage.setItem("clients",JSON.stringify(clients));
+renderClients();
+renderTodayCases();
+document.getElementById("clientFormContainer").style.display="none";
+}
+
+function deleteClient(id){
+clients=clients.filter(c=>c.id!==id);
+localStorage.setItem("clients",JSON.stringify(clients));
+renderClients();
+renderTodayCases();
+}
+
+function renderClients(){
+const search=searchInput.value.toLowerCase();
+const status=statusFilter.value;
+const table=document.getElementById("clientTable");
+table.innerHTML="";
+
+clients
+.filter(c=>
+c.caseTitle.toLowerCase().includes(search) &&
+(status===""||c.status===status))
+.forEach(c=>{
+table.innerHTML+=`
+<tr>
+<td>${c.caseTitle}</td>
+<td>${c.caseType}</td>
+<td>${c.status}</td>
+<td>${c.lastDate}</td>
+<td>${c.nextDate}</td>
+<td><button class="btn-danger" onclick="deleteClient(${c.id})">Delete</button></td>
+</tr>`
+});
+}
+
+/* DISCOVER */
+function postInternship(){
+const data={
+role:role.value,
+duration:duration.value,
+stipend:stipend.value,
+experience:experience.value,
+date:new Date().toLocaleString()
+};
+internships.push(data);
+localStorage.setItem("internships",JSON.stringify(internships));
+document.getElementById("internshipLog").innerHTML=
+"Internship Posted & Notification Sent to HR ✔";
+}
+
+/* NOTEPAD */
+const canvas=document.getElementById("drawCanvas");
+const ctx=canvas.getContext("2d");
+const editor=document.getElementById("textEditor");
+canvas.width=editor.offsetWidth;
+canvas.height=300;
+let drawing=false;
+let mode="text";
+
+canvas.style.pointerEvents="none";
+
+function enableText(){mode="text";canvas.style.pointerEvents="none"}
+function enableDraw(){mode="draw";canvas.style.pointerEvents="auto"}
+
+canvas.addEventListener("mousedown",()=>drawing=true);
+canvas.addEventListener("mouseup",()=>{drawing=false;ctx.beginPath()});
+canvas.addEventListener("mousemove",(e)=>{
+if(!drawing||mode!=="draw")return;
+const rect=canvas.getBoundingClientRect();
+ctx.lineWidth=2;
+ctx.lineCap="round";
+ctx.lineTo(e.clientX-rect.left,e.clientY-rect.top);
+ctx.stroke();
+ctx.beginPath();
+ctx.moveTo(e.clientX-rect.left,e.clientY-rect.top);
+});
+
+function clearCanvas(){ctx.clearRect(0,0,canvas.width,canvas.height)}
+
+function exportPDF(){
+const { jsPDF }=window.jspdf;
+const doc=new jsPDF();
+doc.text(editor.innerText||"",10,10);
+const img=canvas.toDataURL("image/png");
+doc.addImage(img,"PNG",10,40,180,100);
+doc.save("Advocate_Notepad.pdf");
+}
+
+/* INITIAL LOAD */
+renderClients();
+renderTodayCases();
+
+
+// ================= CONFIG =================
+const USE_DUMMY_DATA = true; 
+// Change to false when backend is ready
+
+const advocateId = 1;
+
+// ================= DUMMY DATA =================
+const dummyTodayCases = [
+{
+    id: 1,
+    caseNo: "CR/2024/109",
+    clientName: "Raj Sharma",
+    phone: "9876543210",
+    caseType: "Family Dispute",
+    courtNo: "4",
+    judgeName: "Justice A.K. Singh",
+    hearingTime: "11:30 AM"
+},
+{
+    id: 2,
+    caseNo: "CV/2023/458",
+    clientName: "Priya Mehta",
+    phone: "9823412345",
+    caseType: "Civil Property",
+    courtNo: "2",
+    judgeName: "Justice R. Verma",
+    hearingTime: "01:15 PM"
+},
+{
+    id: 3,
+    caseNo: "CR/2022/982",
+    clientName: "Aman Gupta",
+    phone: "9811122233",
+    caseType: "Criminal Appeal",
+    courtNo: "6",
+    judgeName: "Justice S. Kulkarni",
+    hearingTime: "03:00 PM"
+}
+];
+
+
+// ================= LOAD TODAY CASES =================
+async function renderTodayCases(){
+
+    let cases = [];
+
+    if(USE_DUMMY_DATA){
+        cases = dummyTodayCases;
+    } else {
+        try {
+            const response = await fetch(`/api/cases/today?advocateId=${advocateId}`);
+            cases = await response.json();
+        } catch(error){
+            console.error("Backend not connected", error);
+            cases = [];
+        }
+    }
+
+    const container = document.getElementById("todayCases");
+    container.innerHTML = "";
+
+    if(cases.length === 0){
+        container.innerHTML = "<p>No hearings scheduled for today.</p>";
+        return;
+    }
+
+    cases.forEach(caseItem=>{
+        container.innerHTML += `
+        <div class="case-card">
+            <strong>${caseItem.caseNo}</strong><br>
+            Client: ${caseItem.clientName}<br>
+            Phone: ${caseItem.phone}<br>
+            Type: ${caseItem.caseType}<br>
+            Court No: ${caseItem.courtNo}<br>
+            Judge: ${caseItem.judgeName}<br>
+            Time: ${caseItem.hearingTime}
+        </div>
+        `;
+    });
+}
+
+renderTodayCases();
+
+
+</script>
+
+</body>
+</html>

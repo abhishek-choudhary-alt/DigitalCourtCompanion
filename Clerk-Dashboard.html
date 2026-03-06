@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Clerk Dashboard</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+    *{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  font-family:'Poppins', sans-serif;
+  background:#f8fafc;
+  color:#0f172a;
+}
+
+    /* ================= HEADER STYLE ================= */
+
+.main-header{
+    width:100%;
+    background:#13294b;
+    border-bottom:2px solid rgba(255,255,255,0.2);
+}
+
+.navbar{
+    width:100%;
+    max-width:1400px;
+    margin:auto;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:11px 40px;
+}
+
+/* LEFT SIDE */
+
+.nav-left{
+    display:flex;
+    align-items:center;
+    gap:18px;
+    color:white;
+    font-size:22px;
+    font-weight:600;
+}
+
+.nav-left img{
+    width:60px;
+    height:60px;
+    object-fit:cover;
+    border-radius:10px;
+}
+
+/* CENTER LINKS */
+
+.nav-center{
+    list-style:none;
+    display:flex;
+    gap:60px;
+}
+
+.nav-center li a{
+    text-decoration:none;
+    color:#e5e7eb;
+    font-size:14px;
+    font-weight:400;
+    padding-bottom:5px;
+    transition:0.2s ease;
+}
+
+.nav-center li a{
+    position: relative;
+    text-decoration: none;
+    color: #e5e7eb;
+    font-size: 14px;
+    font-weight: 400;
+    padding-bottom: 5px;
+    transition: 0.3s ease;
+}
+
+/* Yellow animated underline */
+.nav-center li a::after{
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 3px;
+    background-color: #facc15;
+
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+}
+
+/* On hover */
+.nav-center li a:hover{
+    color: white;
+}
+
+.nav-center li a:hover::after{
+    transform: scaleX(1);
+}
+
+/* LOGIN BUTTON */
+
+.login-btn{
+    padding:10px 28px;
+    background:transparent;
+    border:2px solid #facc15;
+    color:#facc15;
+    font-size:14px;
+    border-radius:8px;
+    cursor:pointer;
+    transition:0.3s ease;
+}
+
+.login-btn:hover{
+    background:#facc15;
+    color:#13294b;
+}
+
+body {
+    background: #f4f6f9;
+}
+
+/* ================= HEADER ================= */
+
+.header {
+    background: white;
+    padding: 15px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.logo {
+    font-weight: 700;
+    font-size: 20px;
+    color: #1e3a8a;
+}
+
+.role-badge {
+    background: #e0e7ff;
+    color: #1e3a8a;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.user-name {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.logout-btn {
+    padding: 8px 14px;
+    border-radius: 8px;
+    border: none;
+    background: #ef4444;
+    color: white;
+    cursor: pointer;
+}
+
+.logout-btn:hover {
+    background: #dc2626;
+}
+
+/* ================= LAYOUT ================= */
+
+.container {
+    max-width: 1100px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.section {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+    margin-bottom: 30px;
+}
+
+h2 {
+    margin-bottom: 20px;
+}
+
+/* ================= CARDS ================= */
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.card {
+    background: #f9fafc;
+    padding: 18px;
+    border-radius: 10px;
+    border: 1px solid #e3e7ed;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.card:hover {
+    transform: translateY(-3px);
+}
+
+/* ================= FORM ================= */
+
+.search-bar {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+input, button {
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    font-size: 14px;
+}
+
+input:disabled {
+    background: #f0f0f0;
+}
+
+button {
+    background: #1e3a8a;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+button:disabled {
+    background: #999;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+
+.message {
+    margin-top: 15px;
+    font-size: 14px;
+}
+
+.success { color: green; }
+.error { color: red; }
+</style>
+</head>
+
+<body>
+
+<!-- ================= HEADER ================= -->
+ <header class="main-header">
+  <nav class="navbar">
+
+    <div class="nav-left">
+      <img src="Images/tingey-injury-law-firm-DZpc4UY8ZtY-unsplash.jpg" alt="Logo">
+      Digital Court Companion
+    </div>
+
+    <ul class="nav-center">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="About-Us.html">About Us</a></li>
+      <li><a href="Our-Services.html">Services</a></li>
+      <li><a href="Contact-Us.html">Contact Us</a></li>
+    </ul>
+
+    <button class="login-btn">Login</button>
+
+  </nav>
+</header>
+
+
+<!-- ================= MAIN CONTENT ================= -->
+
+<div class="container">
+
+<!-- ===== TODAY CASES ===== -->
+
+<div class="section">
+<h2>Clerk Dashboard</h2>
+<div id="casesContainer" class="cards"></div>
+</div>
+
+
+<!-- ===== SEARCH & UPDATE ===== -->
+
+<div class="section">
+<h2>Search & Update Case</h2>
+
+<div class="search-bar">
+    <input id="searchInput" type="text" placeholder="Enter Case Number">
+    <button id="searchBtn">Search</button>
+</div>
+
+<div id="statusMessage" class="message"></div>
+
+<form id="caseForm">
+
+<div class="form-grid">
+
+<div class="form-group">
+<label>Case Number</label>
+<input id="caseNo" disabled>
+</div>
+
+<div class="form-group">
+<label>Court Number</label>
+<input id="courtNo">
+</div>
+
+<div class="form-group">
+<label>Client Name</label>
+<input id="clientName" disabled>
+</div>
+
+<div class="form-group">
+<label>Lawyer Name</label>
+<input id="lawyerName" disabled>
+</div>
+
+<div class="form-group">
+<label>Opposition Name</label>
+<input id="oppositionName">
+</div>
+
+<div class="form-group">
+<label>Opposition Lawyer</label>
+<input id="oppositionLawyer">
+</div>
+
+<div class="form-group">
+<label>Judge</label>
+<input id="judge">
+</div>
+
+<div class="form-group">
+<label>Next Hearing Date</label>
+<input id="nextDate" type="date">
+</div>
+
+</div>
+
+<div style="margin-top:20px;">
+<button type="submit" id="updateBtn" disabled>Update Case</button>
+</div>
+
+</form>
+</div>
+
+</div>
+
+
+<script>
+
+/* ================= GLOBAL STATE ================= */
+
+let todayCases = [];
+let currentCaseId = null;
+
+/* ================= LOAD DUMMY DATA ================= */
+
+function loadDummyCases() {
+    todayCases = [
+        {
+            caseNo: "C1024",
+            courtNo: "Civil Court 2",
+            clientName: "Rahul Sharma",
+            lawyerName: "Adv. Raj Verma",
+            oppositionName: "Amit Singh",
+            oppositionLawyer: "Adv. Kapoor",
+            judge: "Justice Mehta",
+            nextDate: "2026-09-12"
+        },
+        {
+            caseNo: "C1041",
+            courtNo: "High Court",
+            clientName: "Priya Malhotra",
+            lawyerName: "Adv. Neha Arora",
+            oppositionName: "Rohit Gupta",
+            oppositionLawyer: "Adv. Tandon",
+            judge: "Justice Rao",
+            nextDate: "2026-09-18"
+        }
+    ];
+}
+
+/* ================= RENDER CARDS ================= */
+
+function renderCases() {
+    const container = document.getElementById("casesContainer");
+    container.innerHTML = "";
+
+    if (todayCases.length === 0) {
+        container.innerHTML = "<p>No cases available.</p>";
+        return;
+    }
+
+    todayCases.forEach(caseItem => {
+        const card = document.createElement("div");
+        card.className = "card";
+
+        card.innerHTML = `
+            <h3>Case #${caseItem.caseNo}</h3>
+            <p><strong>Court:</strong> ${caseItem.courtNo}</p>
+            <p><strong>Client:</strong> ${caseItem.clientName}</p>
+            <p><strong>Lawyer:</strong> ${caseItem.lawyerName}</p>
+            <p><strong>Judge:</strong> ${caseItem.judge}</p>
+            <p><strong>Next Date:</strong> ${caseItem.nextDate}</p>
+        `;
+
+        card.addEventListener("click", () => {
+            populateForm(caseItem);
+            currentCaseId = caseItem.caseNo;
+            document.getElementById("updateBtn").disabled = false;
+        });
+
+        container.appendChild(card);
+    });
+}
+
+/* ================= POPULATE FORM ================= */
+
+function populateForm(data) {
+    document.getElementById("caseNo").value = data.caseNo;
+    document.getElementById("courtNo").value = data.courtNo;
+    document.getElementById("clientName").value = data.clientName;
+    document.getElementById("lawyerName").value = data.lawyerName;
+    document.getElementById("oppositionName").value = data.oppositionName;
+    document.getElementById("oppositionLawyer").value = data.oppositionLawyer;
+    document.getElementById("judge").value = data.judge;
+    document.getElementById("nextDate").value = data.nextDate;
+}
+
+/* ================= SEARCH FUNCTION ================= */
+
+document.getElementById("searchBtn").addEventListener("click", () => {
+    const searchValue = document.getElementById("searchInput").value.trim();
+
+    if (!searchValue) {
+        alert("Enter a case number.");
+        return;
+    }
+
+    const found = todayCases.find(c => 
+        c.caseNo.toLowerCase() === searchValue.toLowerCase()
+    );
+
+    if (!found) {
+        alert("Case not found.");
+        return;
+    }
+
+    populateForm(found);
+    currentCaseId = found.caseNo;
+    document.getElementById("updateBtn").disabled = false;
+});
+
+/* ================= UPDATE CASE ================= */
+
+document.getElementById("caseForm").addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    if (!currentCaseId) {
+        alert("Please select a case first.");
+        return;
+    }
+
+    const updatedData = {
+        courtNo: document.getElementById("courtNo").value.trim(),
+        oppositionName: document.getElementById("oppositionName").value.trim(),
+        oppositionLawyer: document.getElementById("oppositionLawyer").value.trim(),
+        judge: document.getElementById("judge").value.trim(),
+        nextDate: document.getElementById("nextDate").value
+    };
+
+    const index = todayCases.findIndex(c => c.caseNo === currentCaseId);
+
+    if (index === -1) {
+        alert("Case not found in system.");
+        return;
+    }
+
+    // Update local state (dummy mode)
+    todayCases[index] = {
+        ...todayCases[index],
+        ...updatedData
+    };
+
+    renderCases();
+
+    console.log("Send this to backend:", {
+        caseNo: currentCaseId,
+        ...updatedData
+    });
+
+    alert("Case updated successfully (dummy mode).");
+});
+
+/* ================= INIT ================= */
+
+loadDummyCases();
+renderCases();
+
+</script>
+
+</body>
+</html>

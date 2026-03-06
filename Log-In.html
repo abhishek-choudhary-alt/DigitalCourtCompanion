@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DCC | Digital Court Companion</title>
+  <!-- Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ================= GLOBAL ================= */
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background-color: #0a1f44; /* Navy blue background */
+      color: #ffffff;
+      display: flex;
+      flex-direction: column; /* stack header + content */
+      min-height: 100vh;
+    }
+
+    /* ================= HEADER ================= */
+    .main-header {
+      position: sticky;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      backdrop-filter: blur(8px);
+      background: #06142d;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 10%;
+    }
+
+    /* LEFT LOGO */
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 22px;
+      font-weight: 600;
+      color: #d4af37;
+    }
+
+    .nav-left img {
+      width: 36px;
+    }
+
+    /* CENTER LINKS */
+    .nav-center {
+      list-style: none;
+      display: flex;
+      gap: 45px;
+      margin: 0;
+      padding: 0;
+    }
+
+    .nav-center li a {
+      text-decoration: none;
+      color: #e2e8f0;
+      font-size: 15px;
+      position: relative;
+      transition: 0.3s;
+    }
+
+    /* Hover underline animation */
+    .nav-center li a::after {
+      content: "";
+      position: absolute;
+      width: 0%;
+      height: 2px;
+      bottom: -6px;
+      left: 0;
+      background: #d4af37;
+      transition: 0.3s;
+    }
+
+    .nav-center li a:hover {
+      color: #ffffff;
+    }
+
+    .nav-center li a:hover::after {
+      width: 100%;
+    }
+
+    /* RIGHT BUTTON */
+    .login-btn {
+      padding: 8px 22px;
+      background: transparent;
+      border: 1px solid #d4af37;
+      color: #d4af37;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: 0.3s;
+      font-size: 14px;
+    }
+
+    .login-btn:hover {
+      background: #d4af37;
+      color: #06142d;
+    }
+
+    /* ================= SIGN-IN SECTION ================= */
+    .signin-section {
+      flex: 1; /* take remaining space */
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start; /* push content upward */
+      align-items: center;
+      text-align: center;
+      padding-top: 90px; /* shift upward */
+      gap: 1.2em; /* add spacing between elements */
+    }
+
+    h1 {
+      font-weight: 600;
+      font-size: 28px;
+      margin: 0;
+    }
+
+    .link {
+      font-size: 14px;
+    }
+
+    .link a {
+      color: #ff9800; /* Orange accent */
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      max-width: 300px;
+      padding: 14px; /* slightly larger */
+      border: none;
+      border-radius: 5px;
+      background-color: #13294b; /* Slightly lighter navy */
+      color: #ffffff;
+      font-size: 14px;
+    }
+
+    input::placeholder {
+      color: #cccccc;
+    }
+
+    .divider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      max-width: 300px;
+      color: #cccccc;
+      font-size: 14px;
+    }
+
+    .divider::before,
+    .divider::after {
+      content: "";
+      flex: 1;
+      border-bottom: 1px solid #555;
+    }
+
+    .divider:not(:empty)::before {
+      margin-right: .9em; /* increased spacing */
+    }
+
+    .divider:not(:empty)::after {
+      margin-left: .9em;
+    }
+
+    .google-btn {
+      background-color: #ffffff;
+      color: #000000;
+      padding: 14px; /* slightly larger */
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      max-width: 300px;
+      width: 100%;
+    }
+
+    .google-btn img {
+      height: 22px; /* slightly larger */
+      margin-right: 12px;
+    }
+
+    .google-btn:hover {
+      background-color: #f1f1f1;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header/Navbar -->
+  <header class="main-header">
+    <nav class="navbar">
+      <!-- Logo -->
+      <div class="nav-left">
+        <img src="Images/tingey-injury-law-firm-DZpc4UY8ZtY-unsplash.jpg" alt="Logo">
+        <span class="company-name">Digital Court Companion</span>
+      </div>
+
+      <!-- Center Links -->
+      <ul class="nav-center">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Services</a></li>
+        <li><a href="#">Contact Us</a></li>
+      </ul>
+
+      <!-- Right Button -->
+      <div class="nav-right">
+        <button class="login-btn">Login</button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Sign-In Section -->
+  <div class="signin-section">
+    <h1>Sign In</h1>
+    <div class="link">New user? <a href="#">Create an account</a></div>
+    <input type="text" placeholder="Enter your phone number here">
+    <div class="divider">Or</div>
+    <button class="google-btn">
+      <img src="Images/google logo.svg" alt="Google Logo">
+      Continue with Google
+    </button>
+  </div>
+</body>
+</html>

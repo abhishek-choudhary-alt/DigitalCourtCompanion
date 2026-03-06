@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DCC | Sign In</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body{
+    background: linear-gradient(
+    to bottom,
+    
+#12304a,
+#1a3d5c,
+#224c6f,
+#2c5f86,
+#3875a5);          
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+}
+
+
+/* ================= HEADER STYLE (LIKE IMAGE) ================= */
+
+.main-header{
+    width:100%;
+    background:#13294b; /* deep navy */
+    border-bottom:2px solid rgba(255,255,255,0.2);
+}
+
+.navbar{
+    width:100%;
+    max-width:1400px;
+    margin:auto;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:14px 40px;
+}
+
+/* LEFT SIDE (LOGO + NAME) */
+
+.nav-left{
+    display:flex;
+    align-items:center;
+    gap:18px;
+    color:white;
+    font-size:26px;
+    font-weight:600;
+}
+
+.nav-left img{
+    width:60px;
+    height:60px;
+    object-fit:cover;
+    border-radius:10px;
+}
+
+/* CENTER LINKS */
+
+.nav-center{
+    list-style:none;
+    display:flex;
+    gap:60px;
+}
+
+.nav-center li a{
+    text-decoration:none;
+    color:#e5e7eb;
+    font-size:18px;
+    font-weight:400;
+    transition:0.3s ease;
+}
+
+.nav-center li a:hover{
+    color:white;
+}
+.nav-center li a::after{
+    content:"";
+    position:absolute;
+    left:0;
+    bottom:0;
+    width:0%;
+    height:3px;
+    background:#facc15; /* gold yellow */
+    transition:0.3s ease;
+}
+
+.nav-center li a:hover{
+    color:white;
+}
+
+.nav-center li a:hover::after{
+    width:100%;
+}
+/* LOGIN BUTTON */
+
+.login-btn{
+    padding:10px 28px;
+    background:transparent;
+    border:2px solid #facc15; /* gold */
+    color:#facc15;
+    font-size:16px;
+    border-radius:8px;
+    cursor:pointer;
+    transition:0.3s ease;
+}
+
+.login-btn:hover{
+    background:#facc15;
+    color:#13294b;
+}
+
+
+/* ================= MAIN SECTION ================= */
+
+.main-content{
+    flex:1;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:20px 20px 60px 20px; /* Reduced top spacing */
+}
+
+/* Title */
+.title{
+    text-align:center;
+    color:white;
+    margin-bottom:30px;
+}
+
+.title h1{
+    font-size:38px;
+    font-weight:600;
+}
+
+.title p{
+    margin-top:10px;
+    font-size:15px;
+}
+
+.title a{
+    color:#ffcc00;
+    text-decoration:none;
+    font-weight:500;
+}
+
+/* Card */
+.card{
+    width:100%;
+    max-width:580px;  /* Increased width */
+    padding:50px;     /* More internal breathing space */
+    border-radius:20px;
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(20px);
+    box-shadow: 0 15px 50px rgba(0,0,0,0.45);
+    color:white;
+}
+
+/* Inputs */
+.input-group{
+    margin-bottom:25px; /* More space between fields */
+}
+
+.input-group input{
+    width:100%;
+    padding:16px 18px;  /* Taller inputs */
+    border-radius:10px;
+    border:none;
+    outline:none;
+    font-size:15px;
+}
+
+.input-group input{
+    width:100%;
+    padding:13px 15px;
+    border-radius:8px;
+    border:none;
+    outline:none;
+    font-size:14px;
+}
+
+/* Options */
+.options{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    font-size:14px;
+    margin:30px 0;
+    padding:0 5px;
+}
+.options a{
+    color:#ffcc00;
+    text-decoration:none;
+}
+
+/* Button */
+.btn{
+    width:100%;
+    padding:16px;   /* Bigger button */
+    border:none;
+    border-radius:10px;
+    background: linear-gradient(90deg,#3b82f6,#2563eb);
+    color:white;
+    font-size:16px;
+    font-weight:600;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.btn:hover{
+    transform:translateY(-2px);
+    box-shadow:0 6px 15px rgba(0,0,0,0.3);
+}
+
+/* Divider */
+.divider{
+    margin:30px 0;
+    display:flex;
+    align-items:center;
+    text-align:center;
+    font-size:14px;
+    color:#ddd;
+}
+
+.divider::before,
+.divider::after{
+    content:"";
+    flex:1;
+    border-bottom:1px solid rgba(255,255,255,0.3);
+}
+
+.divider:not(:empty)::before{
+    margin-right:.75em;
+}
+
+.divider:not(:empty)::after{
+    margin-left:.75em;
+}
+
+/* Google Button */
+.google-btn{
+    width:100%;
+    padding:11px;
+    border-radius:8px;
+    border:none;
+    cursor:pointer;
+    background:white;
+    color:#333;
+    font-weight:500;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    transition:0.3s;
+}
+
+.google-btn img{
+    width:16px;
+}
+
+.google-btn:hover{
+    background:#f1f1f1;
+}.options label{
+    display:flex;
+    align-items:center;
+    gap:8px;
+}.options a{
+    color:#ffcc00;
+    text-decoration:none;
+    margin-left:40px; /* Adds clear breathing space */
+}.nav-center li a{
+    text-decoration:none;
+    color:#e5e7eb;
+    font-size:16px;
+    font-weight:400;
+    padding-bottom:6px;
+    transition:0.2s ease;
+}
+
+.nav-center li a:hover{
+    color:white;
+    border-bottom:3px solid #facc15; /* yellow line */
+}
+
+</style>
+</head>
+
+<body>
+
+<header class="main-header">
+  <nav class="navbar">
+
+    <div class="nav-left">
+      <img src="Images/tingey-injury-law-firm-DZpc4UY8ZtY-unsplash.jpg" alt="Logo">
+      Digital Court Companion
+    </div>
+
+    <ul class="nav-center">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="About-Us.html">About Us</a></li>
+      <li><a href="Our-Services.html">Services</a></li>
+      <li><a href="Contact-Us.html">Contact Us</a></li>
+    </ul>
+
+    <button class="login-btn">Login</button>
+
+  </nav>
+</header>
+
+<div class="main-content">
+
+  <div>
+      <div class="title">
+          <h1>Sign In</h1>
+          <p>New user? <a href="Four-Registration.html">Create an account</a></p>
+      </div>
+
+      <div class="card">
+          <div class="input-group">
+              <input type="email" placeholder="Email">
+          </div>
+
+          <div class="input-group">
+              <input type="password" placeholder="Password">
+          </div>
+
+          <div class="options">
+              <label><input type="checkbox"> Remember me</label>
+              <a href="#">Forgot Password?</a>
+          </div>
+
+          <button class="btn">Sign In</button>
+
+          <div class="divider">Or</div>
+
+          <button class="google-btn">
+              <img src="https://www.svgrepo.com/show/475656/google-color.svg">
+              Continue with Google
+          </button>
+      </div>
+  </div>
+
+</div>
+
+</body>
+</html>                

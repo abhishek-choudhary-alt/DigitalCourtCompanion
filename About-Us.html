@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About Us | Digital Court Companion</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+    * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  background: #0b1c2d;
+  color: #ffffff;
+}
+
+/* ================= NAVBAR ================= */
+
+.main-header{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  z-index:1000;
+  background:rgba(6,20,45,0.95);
+  backdrop-filter: blur(10px);
+  transition:transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+/* Hidden state */
+.main-header.hide{
+  transform:translateY(-100%);
+}
+
+/* Shadow when scrolling */
+.main-header.scrolled{
+  box-shadow:0 10px 30px rgba(0,0,0,0.4);
+}
+
+.navbar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:18px 10%;
+}
+
+/* LEFT */
+
+.nav-left{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin-left:-60px;
+  cursor:pointer;
+}
+
+.nav-left img{
+  width:55px;
+  height:55px;
+  object-fit:cover;
+  border-radius:8px;
+  transition:transform 0.3s ease;
+}
+
+.nav-left:hover img{
+  transform:rotate(-8deg) scale(1.1);
+}
+
+.nav-left .company-name{
+  font-size:21px;
+  font-weight:700;
+  color:#ffffff;
+  letter-spacing:0.5px;
+  white-space:nowrap;
+}
+
+/* CENTER LINKS */
+
+.nav-center{
+  list-style:none;
+  display:flex;
+  gap:45px;
+}
+
+.nav-center li a{
+  text-decoration:none;
+  color:#e2e8f0;
+  font-size:15px;
+  position:relative;
+  transition:0.3s;
+}
+
+.nav-center li a::after{
+  content:"";
+  position:absolute;
+  width:0%;
+  height:2px;
+  bottom:-6px;
+  left:0;
+  background:#d4af37;
+  transition:0.4s ease;
+}
+
+.nav-center li a:hover{
+  color:#ffffff;
+}
+
+.nav-center li a:hover::after{
+  width:100%;
+}
+
+/* RIGHT BUTTON */
+
+.login-btn{
+  padding:8px 22px;
+  background:transparent;
+  border:1px solid #d4af37;
+  color:#d4af37;
+  border-radius:6px;
+  cursor:pointer;
+  transition:all 0.3s ease;
+  font-size:14px;
+  margin-left:20px;
+}
+
+.login-btn:hover{
+  background:#d4af37;
+  color:#06142d;
+  transform:translateY(-3px);
+  box-shadow:0 8px 20px rgba(212,175,55,0.4);
+}
+
+/* RESPONSIVE */
+
+@media(max-width:900px){
+  .nav-center{
+    display:none;
+  }
+}
+/* ================= HERO ================= */
+
+.about-hero {
+  position: relative;
+  height: 75vh;
+  overflow: hidden;
+}
+
+.about-hero img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(55%);
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 64px;
+  font-weight: 700;
+  letter-spacing: 3px;
+
+  background: rgba(8, 25, 45, 0.65);
+  backdrop-filter: blur(6px);
+
+  color: #ffffff;
+}
+
+/* ================= SECTIONS ================= */
+
+.section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 90px;
+  padding: 140px 10%;
+  background: linear-gradient(135deg, #0b1c2d, #10273f);
+}
+
+.section:nth-of-type(even) {
+  background: linear-gradient(135deg, #10273f, #163a5f);
+}
+
+.about-image {
+  flex: 1;
+  max-width: 420px;
+}
+
+.about-image img {
+  width: 100%;
+  border-radius: 16px;
+  box-shadow: 0 50px 100px rgba(0,0,0,0.6);
+  transition: transform 0.6s ease;
+}
+
+.about-image img:hover {
+  transform: scale(1.05);
+}
+
+/* TEXT CARD */
+
+.section-content {
+  flex: 1.2;
+  max-width: 650px;
+  background: rgba(255,255,255,0.05);
+  padding: 70px;
+  border-radius: 18px;
+  backdrop-filter: blur(6px);
+  box-shadow: 0 30px 80px rgba(0,0,0,0.5);
+}
+
+.section-content h2 {
+  font-size: 60px;
+  font-weight: 700;
+  margin-bottom: 35px;
+  color: #ffffff;
+  position: relative;
+}
+
+.section-content h2::after {
+  content: "";
+  width: 80px;
+  height: 3px;
+  background: #c5a75e;
+  position: absolute;
+  bottom: -12px;
+  left: 0;
+}
+
+.section-content p {
+  font-size: 22px;
+  line-height: 1.9;
+  color: #e6edf5;
+  margin-bottom: 20px;
+}
+
+/* ================= FOOTER ================= */
+
+footer {
+  background: #081520;
+  padding: 40px 0;
+  text-align: center;
+}
+
+.footer-links a {
+  color: #d6dee8;
+  text-decoration: none;
+  margin: 0 12px;
+  transition: 0.3s ease;
+}
+
+.footer-links a:hover {
+  color: #c5a75e;
+}
+
+.footer-links span {
+  color: #555;
+}
+
+.copyright {
+  margin-top: 12px;
+  font-size: 14px;
+  color: #9aa7b5;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 1000px) {
+  .section {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .section-content h2::after {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+/* ===== Testimonials Section ===== */
+.testimonials {
+  text-align: center;
+  padding: 100px 20px;
+  background: linear-gradient(135deg, #0a192f, #0f2a4a);
+  color: #ffffff;
+  position: relative;
+  overflow: hidden;
+}
+
+.testimonials h2 {
+  font-size: 42px;
+  font-weight: 700;
+  margin-bottom: 60px;
+  letter-spacing: 2px;
+  color: #ffffff;
+}
+
+/* Testimonial Card */
+.testimonial-box {
+  max-width: 750px;
+  margin: 0 auto;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px);
+  padding: 50px 40px;
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+  opacity: 0;
+  transform: translateY(30px);
+  position: absolute;
+  left: 0;
+  right: 0;
+}
+
+/* Active testimonial */
+.testimonial-box.active {
+  opacity: 1;
+  transform: translateY(0);
+  position: relative;
+}
+
+/* Photo */
+.testimonial-photo {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  margin-bottom: 25px;
+  border: 4px solid #f4c542;
+  object-fit: cover;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+}
+
+/* Quote Text */
+.testimonial-text {
+  font-size: 1.25em;
+  line-height: 1.8;
+  color: #e6edf3;
+  margin-bottom: 30px;
+  font-style: italic;
+}
+
+/* Name */
+.testimonial-name {
+  font-weight: 600;
+  font-size: 1.1em;
+  color: #ffffff;
+  margin-bottom: 5px;
+}
+
+/* Role */
+.testimonial-role {
+  font-size: 0.95em;
+  color: #f4c542;
+}
+
+/* Arrows */
+.testimonial-nav {
+  margin-top: 40px;
+}
+
+.testimonial-nav .arrow {
+  font-size: 2.2em;
+  cursor: pointer;
+  margin: 0 20px;
+  color: #f4c542;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.testimonial-nav .arrow:hover {
+  transform: scale(1.3);
+  color: #ffffff;
+}
+
+/* Dots */
+.testimonial-dots {
+  margin-top: 30px;
+}
+
+.testimonial-dots .dot {
+  height: 12px;
+  width: 12px;
+  margin: 0 6px;
+  background-color: rgba(255,255,255,0.3);
+  border-radius: 50%;
+  display: inline-block;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.testimonial-dots .dot.active {
+  background-color: #f4c542;
+  transform: scale(1.4);
+}
+
+
+
+</style>
+</head>
+
+<body>
+    <header class="main-header">
+  <nav class="navbar">
+
+    <div class="nav-left">
+      <img src="Images/tingey-injury-law-firm-DZpc4UY8ZtY-unsplash.jpg" alt="Logo">
+      Digital Court Companion
+    </div>
+
+    <ul class="nav-center">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="About-Us.html">About Us</a></li>
+      <li><a href="Our-Services.html">Services</a></li>
+      <li><a href="Contact-Us.html">Contact Us</a></li>
+    </ul>
+
+    <a href="Actual-Sign-In.html"><button class="login-btn">Login</button></a>
+
+  </nav>
+</header>
+
+
+
+<section class="about-hero">
+  <img src="Images/tingey-injury-law-firm-DZpc4UY8ZtY-unsplash.jpg" alt="Hero Image">
+  <div class="hero-overlay">
+    WELCOME TO DCC
+  </div>
+</section>
+
+
+<!-- ================= WHO WE ARE ================= -->
+
+<section class="section">
+    <div class="about-image">
+        <img src="Images/giammarco-boscaro-zeH-ljawHtg-unsplash.jpg" alt="Who We Are">
+    </div>
+  
+
+  <div class="section-content">
+    <h2>Who We Are</h2>
+
+    <p>
+      Digital Court Companion is a next-generation legal-tech platform
+      dedicated to transforming the way individuals interact with the legal ecosystem.
+    </p>
+
+    <p>
+      We build structured, technology-driven solutions that simplify legal processes,
+      improve accessibility, and enhance transparency.
+    </p>
+
+    <p>
+      Our mission is to bridge the gap between citizens and the legal system
+      through intelligent digital infrastructure.
+    </p>
+  </div>
+</section>
+
+
+<!-- ================= WHY US ================= -->
+
+<section class="section">
+    <div class="about-image">
+        <img src="Images/ChatGPT Image Feb 22, 2026, 12_54_01 AM.png" alt="Why Us">
+    </div>
+  
+
+  <div class="section-content">
+    <h2>Why Us?</h2>
+
+    <p>
+      We understand the complexity of legal systems and the challenges people face
+      while navigating them.
+    </p>
+
+    <p>
+      Digital Court Companion provides a clean, structured and
+      technology-first platform that eliminates confusion and improves clarity.
+    </p>
+
+    <p>
+      Our focus is on simplicity, efficiency and reliability —
+      ensuring that legal assistance is accessible, intelligent and user-friendly.
+    </p>
+  </div>
+</section>
+
+<section class="testimonials">
+
+  <h2>Testimonials</h2>
+
+  <!-- Testimonial 1 -->
+  <div class="testimonial-box">
+    <img src="Images/girl-testimonial-image.jpg" alt="Anindya Mazumdar" class="testimonial-photo">
+    <p class="testimonial-text">
+      "DCC's portal is very easy to use, and is very time saving. 
+      It was very helpful to us in filtering out candidates based on our requirements. 
+      It surely is very beneficial to those who are looking to cut time whilst hiring a candidate, 
+      without flooding your mailbox."
+    </p>
+    <h4 class="testimonial-name">Anindya Mazumdar</h4>
+    <p class="testimonial-role">Partner at Singhania & Co. LLP</p>
+  </div>
+
+  <!-- Testimonial 2 -->
+  <div class="testimonial-box">
+    <img src="Images/images.jpg" alt="Riya Sharma" class="testimonial-photo">
+    <p class="testimonial-text">
+      "The platform is extremely intuitive and efficient. 
+      It streamlined our hiring workflow and significantly reduced our screening time. 
+      Highly recommended for modern legal recruitment."
+    </p>
+    <h4 class="testimonial-name">Riya Sharma</h4>
+    <p class="testimonial-role">HR Lead at LexCorp India</p>
+  </div>
+
+  <!-- Testimonial 3 -->
+  <div class="testimonial-box">
+    <img src="Images/images (1).jpg" alt="Aditya Rao" class="testimonial-photo">
+    <p class="testimonial-text">
+      "A revolutionary solution for legal hiring. 
+      The filtering mechanism is precise and saves countless hours. 
+      This is exactly what the legal industry needed."
+    </p>
+    <h4 class="testimonial-name">Aditya Rao</h4>
+    <p class="testimonial-role">Managing Partner at Rao & Associates</p>
+  </div>
+  
+
+  <!-- Navigation Arrows -->
+  <div class="testimonial-nav">
+    <span class="arrow">&#10094;</span>
+    <span class="arrow">&#10095;</span>
+  </div>
+
+  <!-- Dots -->
+  <div class="testimonial-dots">
+    <span class="dot"></span>
+    <span class="dot"></span>
+    <span class="dot"></span>
+  </div>
+
+</section>
+
+<footer>
+    <div class="footer-links">
+        <a href="About-Us.html">About</a>
+        <span>|</span>
+        <a href="https://drive.google.com/file/d/12aYELCmXfK69_VDMBF9dzfJdTf7tpibL/view?usp=drivesdk">Privacy Policy</a>
+        <span>|</span>
+        <a href="https://drive.google.com/file/d/12QyU473kGNxNZ2pbxxt-NEKdh1xJ7aOp/view?usp=drivesdk">Terms Of Use</a>
+        <span>|</span>
+        <a href="Our-Services.html">Services</a>
+        <span>|</span>
+        <a href="Contact-Us.html">Contact Us</a>
+        <!-- <span>|</span>
+        <a href="#">Sitemap</a> -->
+    </div>
+
+    <div class="copyright">
+        © 2026 Digital Court Companion Private Limited . All Rights Reserved.
+    </div>
+</footer>
+
+
+
+
+
+
+<script>
+
+   
+let lastScroll = 0;
+const header = document.querySelector('.main-header');
+
+window.addEventListener('scroll', () => {
+  const currentScroll = window.pageYOffset;
+
+  if(currentScroll > 20){
+    header.classList.add('scrolled');
+  } else {
+    header.classList.remove('scrolled');
+  }
+
+  if(currentScroll > lastScroll && currentScroll > 100){
+    header.classList.add('hide');
+  } else {
+    header.classList.remove('hide');
+  }
+
+  lastScroll = currentScroll;
+});
+
+
+document.addEventListener("DOMContentLoaded", () => {
+  const elements = document.querySelectorAll(".section, .hero-overlay");
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = "1";
+        entry.target.style.transform = "translateY(0)";
+      }
+    });
+  }, { threshold: 0.2 });
+
+  elements.forEach(el => {
+    el.style.opacity = "0";
+    el.style.transform = "translateY(60px)";
+    el.style.transition = "all 0.9s cubic-bezier(0.16, 1, 0.3, 1)";
+    observer.observe(el);
+  });
+});
+
+
+  const testimonials = document.querySelectorAll(".testimonial-box");
+  const dots = document.querySelectorAll(".testimonial-dots .dot");
+  const prevArrow = document.querySelector(".testimonial-nav .arrow:first-child");
+  const nextArrow = document.querySelector(".testimonial-nav .arrow:last-child");
+
+  let currentIndex = 0;
+  let autoSlide;
+
+  function showTestimonial(index) {
+    testimonials.forEach((box, i) => {
+      box.classList.remove("active");
+      dots[i].classList.remove("active");
+    });
+
+    testimonials[index].classList.add("active");
+    dots[index].classList.add("active");
+  }
+
+  function nextTestimonial() {
+    currentIndex = (currentIndex + 1) % testimonials.length;
+    showTestimonial(currentIndex);
+  }
+
+  function prevTestimonial() {
+    currentIndex = (currentIndex - 1 + testimonials.length) % testimonials.length;
+    showTestimonial(currentIndex);
+  }
+
+  prevArrow.addEventListener("click", () => {
+    prevTestimonial();
+    resetAutoSlide();
+  });
+
+  nextArrow.addEventListener("click", () => {
+    nextTestimonial();
+    resetAutoSlide();
+  });
+
+  dots.forEach((dot, i) => {
+    dot.addEventListener("click", () => {
+      currentIndex = i;
+      showTestimonial(currentIndex);
+      resetAutoSlide();
+    });
+  });
+
+  function startAutoSlide() {
+    autoSlide = setInterval(nextTestimonial, 5000);
+  }
+
+  function resetAutoSlide() {
+    clearInterval(autoSlide);
+    startAutoSlide();
+  }
+
+  showTestimonial(currentIndex);
+  startAutoSlide();
+
+</script>
+</body>
+</html>

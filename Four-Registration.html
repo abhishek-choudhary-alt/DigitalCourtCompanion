@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Four Register </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+ /* ================= RESET ================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+/* ================= BODY ================= */
+body {
+    min-height: 100vh;
+    background: linear-gradient(
+    135deg,
+    #071a2f,
+    #0b2745,
+    #11365c,
+    #174775,
+    #1d5a90
+  );
+    overflow-x: hidden;
+}
+
+/* ================= HEADER STYLE ================= */
+
+.main-header{
+    width:100%;
+    background:#13294b;
+    border-bottom:2px solid rgba(255,255,255,0.2);
+}
+
+.navbar{
+    width:100%;
+    max-width:1400px;
+    margin:auto;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:14px 40px;
+}
+
+/* LEFT SIDE */
+
+.nav-left{
+    display:flex;
+    align-items:center;
+    gap:18px;
+    color:white;
+    font-size:26px;
+    font-weight:600;
+}
+
+.nav-left img{
+    width:60px;
+    height:60px;
+    object-fit:cover;
+    border-radius:10px;
+}
+
+/* CENTER LINKS */
+
+.nav-center{
+    list-style:none;
+    display:flex;
+    gap:60px;
+}
+
+.nav-center li a{
+    text-decoration:none;
+    color:#e5e7eb;
+    font-size:16px;
+    font-weight:400;
+    padding-bottom:6px;
+    transition:0.2s ease;
+}
+
+.nav-center li a{
+    position: relative;
+    text-decoration: none;
+    color: #e5e7eb;
+    font-size: 16px;
+    font-weight: 400;
+    padding-bottom: 6px;
+    transition: 0.3s ease;
+}
+
+/* Yellow animated underline */
+.nav-center li a::after{
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 3px;
+    background-color: #facc15;
+
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+}
+
+/* On hover */
+.nav-center li a:hover{
+    color: white;
+}
+
+.nav-center li a:hover::after{
+    transform: scaleX(1);
+}
+
+/* LOGIN BUTTON */
+
+.login-btn{
+    padding:10px 28px;
+    background:transparent;
+    border:2px solid #facc15;
+    color:#facc15;
+    font-size:16px;
+    border-radius:8px;
+    cursor:pointer;
+    transition:0.3s ease;
+}
+
+.login-btn:hover{
+    background:#facc15;
+    color:#13294b;
+}
+/* ================= MAIN CONTENT ================= */
+.container {
+    max-width: 1200px;
+    margin: 100px auto;
+    padding: 0 20px;
+    text-align: center;
+}
+
+.container h1 {
+    font-size: 48px;
+    color: #f1f5f9;
+    margin-bottom: 60px;
+}
+
+/* CARD GRID */
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 40px;
+}
+
+/* CARD */
+.card {
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(12px);
+    padding: 40px 30px;
+    border-radius: 18px;
+    border: 1px solid rgba(255,255,255,0.08);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+    transition: 0.4s ease;
+    color: #e2e8f0;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    border-color: rgba(230, 192, 104, 0.6);
+}
+
+/* CARD TITLE */
+.card h2 {
+    font-size: 22px;
+    margin-bottom: 20px;
+    color: #ffffff;
+}
+
+/* CARD TEXT */
+.card p {
+    font-size: 15px;
+    margin-bottom: 30px;
+    line-height: 1.6;
+    color: #cbd5e1;
+}
+
+/* BUTTON */
+.card button {
+    padding: 12px 28px;
+    border: none;
+    border-radius: 8px;
+    background: #e6c068;
+    color: #0f2a47;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.card button:hover {
+    background: #f3d488;
+    transform: scale(1.05);
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 900px) {
+    .nav-center {
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .container h1 {
+        font-size: 36px;
+    }
+}
+
+    </style>
+</head>
+<body>
+    <header class="main-header">
+  <nav class="navbar">
+
+    <div class="nav-left">
+      <img src="Images/tingey-injury-law-firm-DZpc4UY8ZtY-unsplash.jpg" alt="Logo">
+      Digital Court Companion
+    </div>
+
+    <ul class="nav-center">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="About-Us.html">About Us</a></li>
+      <li><a href="Our-Services.html">Services</a></li>
+      <li><a href="Contact-Us.html">Contact Us</a></li>
+    </ul>
+
+    <button class="login-btn">Login</button>
+
+  </nav>
+</header>
+
+    <div class="container">
+        <h1>Register As</h1>
+
+        <div class="cards">
+
+            <div class="card">
+                <h2>For Litigants</h2>
+                <p>Find verified lawyers and track your case progress with full transparency and real-time updates.</p>
+                <a href="Register-User.html"><button>Register Now</button></a>
+            </div>
+
+            <div class="card">
+                <h2>For Lawyers</h2>
+                <p>Manage clients efficiently, showcase your expertise, and grow your professional digital presence.</p>
+                <a href="Register-Advocate.html"><button>Register Now</button></a>
+            </div>
+
+            <div class="card">
+                <h2>For Judiciary</h2>
+                <p>Enhance transparency, improve case validation, and streamline judicial communication systems.</p>
+                <a href="Register-Staff.html"><button>Register Now</button></a>
+            </div>
+
+            <div class="card">
+                <h2>For Students</h2>
+                <p>Access legal resources, landmark cases, and educational tools to strengthen your learning journey.</p>
+               <a href="Register-Student.html"><button>Register Now</button></a>
+            </div>
+                           
+        </div>
+    </div>
+
+</body>
+</html>

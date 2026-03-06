@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+/* ===== GLOBAL ===== */
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  font-family:'Poppins', sans-serif;
+  background:#f8fafc;
+  color:#0f172a;
+}
+
+section{
+  padding:120px 10%;
+}
+
+h1,h2,h3{
+  font-weight:700;
+}
+
+/* ================= HEADER ================= */
+
+.main-header{
+  position:sticky;
+  top:0;
+  width:100%;
+  z-index:1000;
+  backdrop-filter: blur(8px);
+  background:#06142d;
+  border-bottom:1px solid rgba(255,255,255,0.05);
+}
+
+.navbar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:18px 10%;
+}
+
+/* LEFT LOGO */
+
+.nav-left{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  font-size:22px;
+  font-weight:600;
+  color:whitesmoke;
+}
+
+.nav-left img{
+  width:36px;
+  transform: scale(1.5);
+}
+
+/* CENTER LINKS */
+
+.nav-center{
+  list-style:none;
+  display:flex;
+  gap:45px;
+}
+
+.nav-center li a{
+  text-decoration:none;
+  color:#e2e8f0;
+  font-size:15px;
+  position:relative;
+  transition:0.3s;
+}
+
+/* Hover underline animation */
+.nav-center li a::after{
+  content:"";
+  position:absolute;
+  width:0%;
+  height:2px;
+  bottom:-6px;
+  left:0;
+  background:#d4af37;
+  transition:0.3s;
+}
+
+.nav-center li a:hover{
+  color:#ffffff;
+}
+
+.nav-center li a:hover::after{
+  width:100%;
+}
+
+/* RIGHT BUTTON */
+
+.login-btn{
+  padding:8px 22px;
+  background:transparent;
+  border:1px solid #d4af37;
+  color:#d4af37;
+  border-radius:6px;
+  cursor:pointer;
+  transition:0.3s;
+  font-size:14px;
+}
+
+.login-btn:hover{
+  background:#d4af37;
+  color:#06142d;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:900px){
+
+  .nav-center{
+    display:none;
+  }
+
+} 
+
+
+/* Background */
+.signup-section {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: linear-gradient(
+    135deg,
+    #071a2f,
+    #0b2745,
+    #11365c,
+    #174775,
+    #1d5a90
+  );
+}
+
+/* Container (No Border Box Look) */
+.signup-container {
+  width: 420px;
+  padding: 40px 30px;
+
+  /* Remove border + heavy shadow */
+  background: transparent;
+  border: none;
+  box-shadow: none;
+}
+
+/* Title */
+.signup-container h1 {
+  font-size: 32px;
+  margin-bottom: 10px;
+  margin-top: 0px;
+  color: #ffffff;
+}
+
+.subtitle {
+  color: #b6c6d9;
+  margin-bottom: 30px;
+}
+
+.subtitle span {
+  color: #4da3ff;
+  cursor: pointer;
+}
+
+/* Name Row */
+.name-row {
+  display: flex;
+  gap: 15px;
+}
+
+/* Input Group */
+.input-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+  flex: 1;
+}
+
+.input-group label {
+  font-size: 14px;
+  margin-bottom: 6px;
+  color: #c3d4e8;
+}
+
+/* Inputs - No Border Box */
+.input-group input {
+  padding: 12px;
+  border-radius: 8px;
+
+  border: none;                  /* remove border */
+  background: rgba(255,255,255,0.08);
+  color: white;
+
+  outline: none;
+  transition: 0.3s ease;
+}
+
+/* Focus Glow Instead of Border */
+.input-group input:focus {
+  background: rgba(255,255,255,0.15);
+  box-shadow: 0 0 0 2px rgba(77,163,255,0.4);
+}
+
+/* Register Button */
+.register-btn {
+  width: 100%;
+  padding: 14px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  margin-top: 10px;
+
+  background: linear-gradient(
+    90deg,
+    #1e3c72,
+    #2a5298,
+    #3b6ec2,
+    #4da3ff
+  );
+
+  color: white;
+  transition: 0.3s;
+}
+
+.register-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+}
+
+/* Terms */
+.terms {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 15px 0;
+  font-size: 13px;
+  color: rgba(255,255,255,0.2);
+}
+
+/* Divider */
+.divider {
+  text-align: center;
+  margin: 25px 0;
+  position: relative;
+}
+
+.divider::before,
+.divider::after {
+  content: "";
+  height: 1px;
+  width: 40%;
+  background: rgba(255,255,255,0.2);
+  position: absolute;
+  top: 50%;
+}
+
+.divider::before {
+  left: 0;
+}
+
+.divider::after {
+  right: 0;
+}
+
+.divider span {
+  padding: 0 10px;
+  color: #b6c6d9;
+}
+
+/* Google Button - Soft */
+.google-btn {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: none;
+
+  background: rgba(255,255,255,0.08);
+  color: white;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.google-btn:hover {
+  background: rgba(255,255,255,0.15);
+}
+.google-btn {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: none;
+
+  background: rgba(255,255,255,0.08);
+  color: white;
+  cursor: pointer;
+  transition: 0.3s;
+
+  display: flex;              /* ADD */
+  align-items: center;        /* ADD */
+  justify-content: center;    /* ADD */
+  gap: 10px;                  /* ADD spacing between icon & text */
+}
+
+.google-btn img {
+  width: 18px;                /* control icon size */
+  height: 18px;
+}.signup-section {
+  min-height: calc(100vh - 80px); /* subtract navbar height */
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;  /* move content upward */
+  padding-top: 10px;        /* control spacing manually */
+
+  background: linear-gradient(
+    135deg,
+    #071a2f,
+    #0b2745,
+    #11365c,
+    #174775,
+    #1d5a90
+  );
+}
+body{
+  background: linear-gradient(
+    135deg,
+    #071a2f,
+    #0b2745,
+    #11365c,
+    #174775,
+    #1d5a90)
+}
+
+
+
+
+
+</style> 
+</head>
+<body>
+  
+<header class="main-header">
+  <nav class="navbar">
+
+    <!-- Logo -->
+    <div class="nav-left">
+      <img src="Images/tingey-injury-law-firm-DZpc4UY8ZtY-unsplash.jpg" alt="Logo">
+      <span class="company-name">Digital Court Companion</span>
+    </div>
+
+    <!-- Center Links -->
+    <ul class="nav-center">
+      <li><a href="#">Home</a></li>
+      <li><a href="#">About Us</a></li>
+      <li><a href="#">Services</a></li>
+      <li><a href="#">Contact Us</a></li>
+    </ul>
+
+    <!-- Right Button -->
+    <div class="nav-right">
+      <button class="login-btn">Login</button>
+    </div>
+
+  </nav>
+</header>
+
+<section class="signup-section">
+  <div class="signup-container">
+    <h1 style="color:#4da3ff">Sign Up</h1>
+    <br>
+
+    <form>
+      <div class="name-row">
+        <div class="input-group">
+          <label>First Name</label>
+          <input type="text" placeholder="First Name">
+        </div>
+
+        <div class="input-group">
+          <label>Last Name</label>
+          <input type="text" placeholder="Last Name">
+        </div>
+      </div>
+
+      <div class="input-group">
+        <label>Email</label>
+        <input type="email" placeholder="Enter your Email here">
+      </div>
+
+      <div class="input-group">
+        <label>Password</label>
+        <input type="password" placeholder="Enter your password here">
+      </div>
+
+      <button class="register-btn">Register Now</button>
+
+      <div class="terms">
+        <input type="checkbox" checked>
+        <p>I agree to the Terms & Conditions and Privacy Policy.</p>
+      </div>
+
+      <div class="divider">
+        <span>Or</span>
+      </div>
+
+      <button type="button" class="google-btn">
+        <img src="Images/google logo.svg" alt="">
+        Continue with Google
+      </button>
+    </form>
+  </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

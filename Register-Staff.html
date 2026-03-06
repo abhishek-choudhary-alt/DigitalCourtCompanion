@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Staff Register</title>
+
+<style>
+
+/* ================= RESET ================= */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Segoe UI',sans-serif;
+}
+
+/* ================= BODY ================= */
+body{
+  min-height:100vh;
+  background:linear-gradient(to bottom,#071a2f,#0b2745,#11365c,#174775,#1d5a90);
+  color:white;
+  display:flex;
+  flex-direction:column;
+}
+
+/* ================= HEADER ================= */
+.main-header{
+  width:100%;
+  background:#13294b;
+  border-bottom:2px solid rgba(255,255,255,0.2);
+}
+
+.navbar{
+  max-width:1400px;
+  margin:auto;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:10px 40px;
+}
+
+.nav-left{
+  display:flex;
+  align-items:center;
+  gap:18px;
+  font-size:22px;
+  font-weight:600;
+}
+
+.nav-left img{
+  width:55px;
+  height:55px;
+  object-fit:cover;
+  border-radius:8px;
+}
+
+.nav-center{
+  list-style:none;
+  display:flex;
+  gap:60px;
+}
+
+.nav-center a{
+  text-decoration:none;
+  color:#e5e7eb;
+  font-size:14px;
+  position:relative;
+  padding-bottom:5px;
+  transition:.3s;
+}
+
+.nav-center a::after{
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:0;
+  width:100%;
+  height:3px;
+  background:#facc15;
+  transform:scaleX(0);
+  transform-origin:left;
+  transition:transform .3s ease;
+}
+
+.nav-center a:hover{
+  color:white;
+}
+
+.nav-center a:hover::after{
+  transform:scaleX(1);
+}
+
+.login-btn{
+  padding:8px 26px;
+  background:transparent;
+  border:2px solid #facc15;
+  color:#facc15;
+  border-radius:8px;
+  cursor:pointer;
+  transition:.3s;
+}
+
+.login-btn:hover{
+  background:#facc15;
+  color:#13294b;
+}
+
+/* ================= MAIN ================= */
+.main-container{
+  flex:1;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:25px;
+}
+
+.form-card{
+  width:460px;
+  background:rgba(255,255,255,0.06);
+  backdrop-filter:blur(15px);
+  border-radius:16px;
+  padding:28px;
+  border:1px solid rgba(255,255,255,0.1);
+  box-shadow:0 20px 40px rgba(0,0,0,0.35);
+}
+
+.form-card h2{
+  text-align:center;
+  margin-bottom:20px;
+  font-size:20px;
+}
+
+/* ================= FORM ================= */
+.form-group{
+  margin-bottom:14px;
+}
+
+.row{
+  display:flex;
+  gap:12px;
+}
+
+.row .form-group{
+  flex:1;
+}
+
+label{
+  font-size:12px;
+  margin-bottom:4px;
+  display:block;
+}
+
+input,select{
+  width:100%;
+  height:34px;
+  padding:0 10px;
+  border-radius:7px;
+  border:1px solid rgba(255,255,255,0.2);
+  background:rgba(255,255,255,0.08);
+  color:white;
+  font-size:12px;
+  outline:none;
+  transition:.2s;
+}
+
+input:focus,select:focus{
+  border-color:#4ea8ff;
+  background:rgba(255,255,255,0.12);
+}
+
+select option{
+  background:#0b2745;
+  color:white;
+}
+
+.password-wrapper{
+  position:relative;
+}
+
+.toggle-password{
+  position:absolute;
+  right:10px;
+  top:8px;
+  font-size:11px;
+  cursor:pointer;
+  color:#4ea8ff;
+}
+
+/* ================= BUTTON ================= */
+.submit-btn{
+  width:100%;
+  height:36px;
+  border:none;
+  border-radius:8px;
+  margin-top:8px;
+  background:linear-gradient(135deg,#4ea8ff,#1d5a90);
+  color:white;
+  font-size:13px;
+  font-weight:600;
+  cursor:pointer;
+  transition:.2s;
+}
+
+.submit-btn:hover{
+  opacity:.9;
+}
+
+/* ================= ERROR ================= */
+.error{
+  font-size:11px;
+  color:#ff6b6b;
+  margin-top:3px;
+  display:none;
+}
+.password-wrapper {
+  position: relative;
+}
+.password-wrapper input {
+  padding-right: 55px;   /* makes space for Show button */
+}
+
+.toggle-password {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 11px;
+  cursor: pointer;
+  color: #4ea8ff;
+  user-select: none;
+}
+
+</style>
+</head>
+<body>
+
+<header class="main-header">
+<nav class="navbar">
+<div class="nav-left">
+<img src="Images/tingey-injury-law-firm-DZpc4UY8ZtY-unsplash.jpg">
+Digital Court Companion
+</div>
+
+<ul class="nav-center">
+<li><a href="#">Home</a></li>
+<li><a href="#">About Us</a></li>
+<li><a href="#">Services</a></li>
+<li><a href="#">Contact Us</a></li>
+</ul>
+
+<button class="login-btn">Login</button>
+</nav>
+</header>
+
+<div class="main-container">
+<div class="form-card">
+<h2>Staff Register</h2>
+
+<form id="staffForm" novalidate>
+
+<div class="row">
+<div class="form-group">
+<label>First Name</label>
+<input type="text" id="firstName">
+<div class="error" id="firstNameError"></div>
+</div>
+
+<div class="form-group">
+<label>Last Name</label>
+<input type="text" id="lastName">
+<div class="error" id="lastNameError"></div>
+</div>
+</div>
+
+<div class="form-group">
+<label>Role</label>
+<select id="role">
+<option value="">Select Role</option>
+<option value="Clerk">Clerk</option>
+<option value="Judge">Judge</option>
+<option value="Bailiff">Bailiff</option>
+</select>
+<div class="error" id="roleError"></div>
+</div>
+
+<div class="row">
+<div class="form-group">
+<label>Age</label>
+<input type="number" id="age">
+<div class="error" id="ageError"></div>
+</div>
+
+<div class="form-group">
+<label>Gender</label>
+<select id="gender">
+<option value="">Select Gender</option>
+<option>Male</option>
+<option>Female</option>
+<option>Other</option>
+</select>
+<div class="error" id="genderError"></div>
+</div>
+</div>
+
+<div class="form-group">
+<label>Qualification</label>
+<input type="text" id="qualification">
+</div>
+
+<div class="form-group" id="idFieldGroup">
+<label id="idLabel">Employee ID</label>
+<input type="text" id="employeeId">
+</div>
+
+<div class="form-group">
+<label>Phone</label>
+<input type="tel" id="phone">
+<div class="error" id="phoneError"></div>
+</div>
+
+<div class="form-group">
+<label>Email</label>
+<input type="email" id="email">
+<div class="error" id="emailError"></div>
+</div>
+
+<div class="form-group password-wrapper">
+<label>Password</label>
+<input type="password" id="password">
+<span class="toggle-password" id="togglePassword">Show</span>
+<div class="error" id="passwordError"></div>
+</div>
+
+<button type="submit" class="submit-btn">Register</button>
+
+</form>
+</div>
+</div>
+
+<script>
+
+/* ================= PRODUCTION LEVEL JS ================= */
+
+const form = document.getElementById("staffForm");
+
+const showError = (id,message)=>{
+  const errorEl=document.getElementById(id);
+  errorEl.innerText=message;
+  errorEl.style.display="block";
+};
+
+const clearErrors=()=>{
+  document.querySelectorAll(".error").forEach(el=>{
+    el.style.display="none";
+  });
+};
+
+form.addEventListener("submit",async function(e){
+  e.preventDefault();
+  clearErrors();
+
+  let isValid=true;
+
+  const firstName=firstName.value.trim();
+  const lastName=lastName.value.trim();
+  const role=role.value;
+  const age=parseInt(age.value);
+  const gender=gender.value;
+  const phone=phone.value.trim();
+  const email=email.value.trim();
+  const password=password.value;
+
+  if(firstName===""){showError("firstNameError","First name required");isValid=false;}
+  if(lastName===""){showError("lastNameError","Last name required");isValid=false;}
+  if(role===""){showError("roleError","Select role");isValid=false;}
+  if(!age || age<18){showError("ageError","Minimum age 18");isValid=false;}
+  if(gender===""){showError("genderError","Select gender");isValid=false;}
+  if(!/^[0-9]{10}$/.test(phone)){showError("phoneError","Enter valid 10 digit phone");isValid=false;}
+  if(!/^\S+@\S+\.\S+$/.test(email)){showError("emailError","Enter valid email");isValid=false;}
+  if(password.length<6){showError("passwordError","Minimum 6 characters");isValid=false;}
+
+  if(!isValid) return;
+
+  const data={
+    firstName,
+    lastName,
+    role,
+    age,
+    gender,
+    qualification:qualification.value.trim(),
+    employeeId:employeeId.value.trim(),
+    phone,
+    email,
+    password
+  };
+
+  console.log("Ready for backend:",data);
+
+  // PRODUCTION READY BACKEND CALL
+  /*
+  await fetch("/api/staff/register",{
+    method:"POST",
+    headers:{"Content-Type":"application/json"},
+    body:JSON.stringify(data)
+  });
+  */
+
+  alert("Staff Registered Successfully ✅");
+  form.reset();
+});
+
+/* PASSWORD TOGGLE */
+
+document.getElementById("togglePassword").addEventListener("click",function(){
+  const passInput=document.getElementById("password");
+  if(passInput.type==="password"){
+    passInput.type="text";
+    this.innerText="Hide";
+  }else{
+    passInput.type="password";
+    this.innerText="Show";
+  }
+});
+/* ================= DYNAMIC ROLE BASED ID FIELD ================= */
+
+const roleSelect = document.getElementById("role");
+const idLabel = document.getElementById("idLabel");
+const idInput = document.getElementById("employeeId");
+
+roleSelect.addEventListener("change", function () {
+  
+  if (this.value === "Judge") {
+    idLabel.innerText = "Bar Registration ID";
+    idInput.id = "barRegistrationId";
+  } else {
+    idLabel.innerText = "Employee ID";
+    idInput.id = "employeeId";
+  }
+
+});
+
+</script>
+
+</body>
+</html>
