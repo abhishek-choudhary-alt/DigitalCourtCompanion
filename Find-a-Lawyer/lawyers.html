@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Find a Lawyer</title>
+  <link rel="stylesheet" href="lawyers.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Find a Lawyer</h1>
+
+    <!-- Search and Filters -->
+    <div class="controls">
+      <input type="text" id="search" placeholder="Search lawyers...">
+
+      <select id="filterGender">
+        <option value="">All Genders</option>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+      </select>
+
+      <select id="filterExpertise">
+        <option value="">All Expertise</option>
+        <option value="Criminal">Criminal</option>
+        <option value="Civil">Civil</option>
+        <option value="Corporate">Corporate</option>
+        <option value="Family">Family</option>
+      </select>
+
+      <input type="number" id="minFees" placeholder="Min Fees">
+      <input type="number" id="maxFees" placeholder="Max Fees">
+    </div>
+
+    <!-- Table -->
+    <table id="lawyersTable">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Expertise</th>
+          <th>Experience (years)</th>
+          <th>Fees</th>
+          <th>Phone</th>
+          <th>Email</th>
+          <th>Age</th>
+          <th>Gender</th>
+          <th>Hire</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Rows injected here -->
+      </tbody>
+    </table>
+
+    <!-- Pagination -->
+    <div class="pagination">
+      <button id="prevPage">Prev</button>
+      <span id="pageInfo"></span>
+      <button id="nextPage">Next</button>
+    </div>
+  </div>
+
+  <script src="lawyers.js"></script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>New Case</title>
+  <link rel="stylesheet" href="new-case.css">
+</head>
+<body>
+  <div class="form-container">
+    <h1>Add New Case</h1>
+    <form id="newCaseForm">
+      <div class="form-grid">
+        <div class="form-group">
+          <label for="firstName">First Name</label>
+          <input type="text" id="firstName" required>
+        </div>
+
+        <div class="form-group">
+          <label for="lastName">Last Name</label>
+          <input type="text" id="lastName" required>
+        </div>
+
+        <div class="form-group">
+          <label for="caseTitle">Case Title</label>
+          <input type="text" id="caseTitle" required>
+        </div>
+
+        <div class="form-group">
+          <label for="caseNumber">Case Number</label>
+          <input type="text" id="caseNumber" required>
+        </div>
+
+        <div class="form-group">
+          <label for="courtNumber">Court Number</label>
+          <input type="text" id="courtNumber" required>
+        </div>
+
+        <div class="form-group">
+          <label for="hearingDate">Hearing Date</label>
+          <input type="date" id="hearingDate" required>
+        </div>
+
+        <div class="form-group">
+          <label for="judge">Judge</label>
+          <input type="text" id="judge" required>
+        </div>
+      </div>
+
+      <button type="submit" class="submit-btn">Submit Case</button>
+    </form>
+  </div>
+  <script src="new-case.js"></script>
+</body>
+</html>

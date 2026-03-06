@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Internship Details</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+body{
+  font-family:'Poppins',sans-serif;
+  background:#f8fafc;
+  padding:60px;
+}
+.container{
+  max-width:900px;
+  margin:auto;
+  background:white;
+  padding:40px;
+  border-radius:14px;
+  box-shadow:0 6px 20px rgba(0,0,0,0.05);
+}
+button{
+  margin-top:20px;
+  padding:12px 20px;
+  background:#facc15;
+  border:none;
+  border-radius:8px;
+  font-weight:600;
+  cursor:pointer;
+}
+button:hover{
+  background:#fbbf24;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+  <div id="internContent"></div>
+</div>
+
+<script>
+
+/* ================= REAL DATA ================= */
+
+const internships = [
+{
+  id:1,
+  name:"Manoj Kumar",
+  area:"Criminal",
+  location:"Jaipur",
+  duration:"3 Months",
+  stipend:"Unpaid",
+  description:"Work on criminal litigation drafting and court exposure."
+},
+{
+  id:2,
+  name:"Priya Singh",
+  area:"Family",
+  location:"Delhi",
+  duration:"2 Months",
+  stipend:"₹5000/month",
+  description:"Assist in mediation and legal research for family disputes."
+},
+{
+  id:3,
+  name:"Rahul Sharma",
+  area:"Corporate",
+  location:"Bangalore",
+  duration:"4 Months",
+  stipend:"₹8000/month",
+  description:"Corporate compliance and contract drafting."
+}
+];
+
+/* ================= LOAD BY ID ================= */
+
+const params = new URLSearchParams(window.location.search);
+const id = parseInt(params.get("id"));
+
+const selected = internships.find(i => i.id === id);
+
+if(selected){
+  document.getElementById("internContent").innerHTML = `
+    <h1>${selected.name}</h1>
+    <p><strong>Area:</strong> ${selected.area} Law</p>
+    <p><strong>Location:</strong> ${selected.location}</p>
+    <p><strong>Duration:</strong> ${selected.duration}</p>
+    <p><strong>Stipend:</strong> ${selected.stipend}</p>
+    <br>
+    <h3>Description</h3>
+    <p>${selected.description}</p>
+    <button onclick="applyInternship('${selected.name}')">
+      Apply Now
+    </button>
+  `;
+}
+
+/* ================= GOOGLE FORM ================= */
+
+const GOOGLE_FORM_BASE =
+"https://docs.google.com/forms/d/e/YOUR_FORM_ID/viewform?usp=pp_url";
+
+const INTERNSHIP_FIELD = "entry.1234567890";
+
+function applyInternship(name){
+
+  const encodedName = encodeURIComponent(name);
+  const finalURL =
+    `${GOOGLE_FORM_BASE}&${INTERNSHIP_FIELD}=${encodedName}`;
+
+  window.open(finalURL, "_blank");
+}
+
+</script>
+
+</body>
+</html>

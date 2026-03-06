@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My Cases</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1>My Cases</h1>
+    <div class="controls">
+      <input type="text" id="search" placeholder="Search cases...">
+      <a href="new-case.html"><button id="newCaseBtn">+ New Case</button></a>
+    </div>
+    <table id="casesTable">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Case Number</th>
+          <th>Court Number</th>
+          <th>Lawyer</th>
+          <th>Judge</th>
+          <th>Last Date</th>
+          <th>Next Date</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Rows will be injected here -->
+      </tbody>
+    </table>
+    <div class="pagination">
+      <button id="prevPage">Prev</button>
+      <span id="pageInfo"></span>
+      <button id="nextPage">Next</button>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>

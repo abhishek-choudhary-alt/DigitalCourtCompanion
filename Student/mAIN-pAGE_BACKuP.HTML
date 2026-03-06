@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Digital Court Companion - Student</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Poppins',sans-serif;background:#f8fafc;color:#0f172a;}
+
+/* HEADER */
+.main-header{width:100%;background:#13294b;border-bottom:2px solid rgba(255,255,255,0.2);}
+.navbar{width:100%;max-width:1400px;margin:auto;display:flex;justify-content:space-between;align-items:center;padding:11px 40px;}
+.nav-left{display:flex;align-items:center;gap:18px;color:white;font-size:22px;font-weight:600;}
+.nav-left img{width:60px;height:60px;border-radius:10px;}
+.nav-center{list-style:none;display:flex;gap:60px;}
+.nav-center li a{text-decoration:none;color:#e5e7eb;font-size:14px;position:relative;}
+.nav-center li a::after{content:"";position:absolute;left:0;bottom:-4px;width:100%;height:3px;background:#facc15;transform:scaleX(0);transition:0.3s;}
+.nav-center li a:hover::after{transform:scaleX(1);}
+.login-btn{padding:10px 28px;background:transparent;border:2px solid #facc15;color:#facc15;border-radius:8px;cursor:pointer;}
+.login-btn:hover{background:#facc15;color:#13294b;}
+
+/* HERO */
+.hero{padding:80px 100px;background:#eef2f7;}
+.hero h1{font-size:44px;margin-bottom:20px;}
+.hero p{font-size:18px;color:#475569;max-width:700px;}
+
+/* GRID */
+.container{padding:60px 100px;display:grid;grid-template-columns:1fr 1fr;gap:60px;}
+.section-title{font-size:26px;margin-bottom:20px;}
+
+/* FILTER */
+.filter-bar{display:flex;gap:15px;margin-bottom:20px;}
+.filter-bar select,.filter-bar input{padding:10px;border-radius:8px;border:1px solid #cbd5e1;}
+.filter-bar button{padding:10px 18px;background:#13294b;color:white;border:none;border-radius:8px;cursor:pointer;}
+
+/* CARD */
+.card{background:white;padding:25px;border-radius:14px;margin-bottom:20px;box-shadow:0 6px 18px rgba(0,0,0,0.05);transition:0.3s;}
+.card:hover{transform:translateY(-4px);}
+.card h3{margin-bottom:8px;}
+.card p{color:#64748b;}
+.view-btn{margin-top:12px;padding:8px 16px;background:#facc15;border:none;border-radius:8px;cursor:pointer;font-weight:600;}
+.notepad {
+  background: white;
+  padding: 25px;
+  border-radius: 14px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.05);
+}
+
+.toolbar {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+  flex-wrap: wrap;
+}
+
+.toolbar button {
+  padding: 6px 12px;
+  border: none;
+  background: #13294b;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.editor-container {
+  position: relative;
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+#textEditor {
+  min-height: 300px;
+  padding: 15px;
+  outline: none;
+}
+
+#drawCanvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+</style>
+</head>
+
+<body>
+
+<header class="main-header">
+<nav class="navbar">
+<div class="nav-left">
+<img src="Images/tingey-injury-law-firm-DZpc4UY8ZtY-unsplash.jpg">
+Digital Court Companion
+</div>
+<ul class="nav-center">
+<li><a href="#">Home</a></li>
+<li><a href="#">About</a></li>
+<li><a href="#">Services</a></li>
+<li><a href="#">Contact</a></li>
+</ul>
+<button class="login-btn">Login</button>
+</nav>
+</header>
+
+<section class="hero">
+<h1>Welcome Law Students!</h1>
+<p>Your one-stop platform for exploring structured case studies and discovering verified internships across India’s judiciary ecosystem.</p>
+</section>
+
+<div class="container">
+
+<!-- CASE SECTION -->
+<div>
+<h2 class="section-title">Case Studies</h2>
+
+<div class="filter-bar">
+<select id="caseTypeFilter">
+<option value="all">All Types</option>
+<option value="Criminal">Criminal</option>
+<option value="Family">Family</option>
+<option value="Corporate">Corporate</option>
+</select>
+<input type="text" id="caseSearch" placeholder="Search case name...">
+<button onclick="applyCaseFilters()">Search</button>
+</div>
+
+<div id="caseList"></div>
+</div>
+
+<!-- INTERNSHIP SECTION -->
+<div>
+<h2 class="section-title">Internships</h2>
+
+<div class="filter-bar">
+    <select id="internLocationFilter">
+        <option value="all">All Locations</option>
+        <option value="Jaipur">Jaipur</option>
+        <option value="Delhi">Delhi</option>
+        <option value="Bangalore">Bangalore</option>
+    </select>
+    <select id="internAreaFilter">
+        <option value="all">All Areas</option>
+        <option value="Criminal">Criminal</option>
+        <option value="Family">Family</option>
+        <option value="Corporate">Corporate</option>
+    </select>
+    <button onclick="applyInternFilters()">Search</button>
+</div>
+
+<div id="internList"></div>
+</div>
+
+</div>
+
+<hr style="margin:60px 0;">
+
+<h2 class="section-title">Student Notepad</h2>
+
+<div class="notepad">
+
+  <div class="toolbar">
+    <input type="color" id="textColor">
+    <select id="fontSize">
+      <option value="16px">16</option>
+      <option value="18px">18</option>
+      <option value="20px">20</option>
+      <option value="24px">24</option>
+    </select>
+
+    <button onclick="enableText()">Text Mode</button>
+    <button onclick="enableDraw()">Draw Mode</button>
+    <button onclick="enableEraser()">Eraser</button>
+    <button onclick="clearCanvas()">Clear</button>
+    <button onclick="exportNotepad()">Export PDF</button>
+  </div>
+
+  <div class="editor-container">
+    <div id="textEditor" contenteditable="true"></div>
+    <canvas id="drawCanvas"></canvas>
+  </div>
+
+</div>
+<script>
+
+/* ================= DATA ================= */
+
+const cases=[
+{id:1,title:"State vs Ramesh",type:"Criminal",court:"Supreme Court",year:2019},
+{id:2,title:"Meera vs Arjun",type:"Family",court:"High Court",year:2020},
+{id:3,title:"TechCorp vs Union",type:"Corporate",court:"Supreme Court",year:2022}
+];
+
+const internships=[
+{id:1,name:"Manoj Kumar",area:"Criminal",location:"Jaipur"},
+{id:2,name:"Priya Singh",area:"Family",location:"Delhi"},
+{id:3,name:"Rahul Sharma",area:"Corporate",location:"Bangalore"}
+];
+
+/* ================= RENDER ================= */
+
+function renderCases(data){
+const container=document.getElementById("caseList");
+container.innerHTML="";
+data.forEach(c=>{
+container.innerHTML+=`
+<div class="card">
+<h3>${c.title}</h3>
+<p>${c.type} | ${c.court} | ${c.year}</p>
+<button class="view-btn" onclick="openCase(${c.id})">View Full Case</button>
+</div>`;
+});
+}
+
+function renderInternships(data){
+const container=document.getElementById("internList");
+container.innerHTML="";
+data.forEach(i=>{
+container.innerHTML+=`
+<div class="card">
+<h3>${i.name}</h3>
+<p>${i.area} Law | ${i.location}</p>
+<button class="view-btn" onclick="openInternship(${i.id})">View Internship</button>
+</div>`;
+});
+}
+
+renderCases(cases);
+renderInternships(internships);
+
+/* ================= FILTERS ================= */
+
+function applyCaseFilters(){
+const type=document.getElementById("caseTypeFilter").value;
+const search=document.getElementById("caseSearch").value.toLowerCase();
+const filtered=cases.filter(c=>
+(type==="all"||c.type===type) &&
+c.title.toLowerCase().includes(search)
+);
+renderCases(filtered);
+}
+
+function applyInternFilters(){
+const location=document.getElementById("internLocationFilter").value;
+const area=document.getElementById("internAreaFilter").value;
+
+const filtered=internships.filter(i=>
+(location==="all"||i.location===location) &&
+(area==="all"||i.area===area)
+);
+renderInternships(filtered);
+}
+
+/* ================= REDIRECTS ================= */
+
+function openCase(id){
+window.location.href=`case-details.html?id=${id}`;
+}
+
+function openInternship(id){
+window.location.href=`internship-details.html?id=${id}`;
+}
+/* ================= NOTEPAD LOGIC ================= */
+
+const canvas = document.getElementById("drawCanvas");
+const ctx = canvas.getContext("2d");
+const editor = document.getElementById("textEditor");
+
+let drawing = false;
+let mode = "text";
+
+function resizeCanvas() {
+  canvas.width = editor.offsetWidth;
+  canvas.height = editor.offsetHeight;
+}
+resizeCanvas();
+window.addEventListener("resize", resizeCanvas);
+
+/* ===== Modes ===== */
+
+function enableText(){
+  mode = "text";
+  canvas.style.pointerEvents = "none";
+}
+
+function enableDraw(){
+  mode = "draw";
+  canvas.style.pointerEvents = "auto";
+  ctx.globalCompositeOperation = "source-over";
+}
+
+function enableEraser(){
+  mode = "erase";
+  canvas.style.pointerEvents = "auto";
+  ctx.globalCompositeOperation = "destination-out";
+}
+
+/* ===== Drawing ===== */
+
+canvas.addEventListener("mousedown", () => drawing = true);
+canvas.addEventListener("mouseup", () => drawing = false);
+canvas.addEventListener("mousemove", draw);
+
+function draw(e){
+  if(!drawing) return;
+  ctx.lineWidth = 3;
+  ctx.lineCap = "round";
+  ctx.strokeStyle = document.getElementById("textColor").value;
+
+  const rect = canvas.getBoundingClientRect();
+  ctx.lineTo(e.clientX - rect.left, e.clientY - rect.top);
+  ctx.stroke();
+  ctx.beginPath();
+  ctx.moveTo(e.clientX - rect.left, e.clientY - rect.top);
+}
+
+/* ===== Clear ===== */
+
+function clearCanvas(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+}
+
+/* ===== Text Formatting ===== */
+
+document.getElementById("textColor").addEventListener("input", function(){
+  document.execCommand("foreColor", false, this.value);
+});
+
+document.getElementById("fontSize").addEventListener("change", function(){
+  document.execCommand("fontSize", false, "7");
+  const fontElements = document.getElementsByTagName("font");
+  for(let i=0;i<fontElements.length;i++){
+    if(fontElements[i].size=="7"){
+      fontElements[i].removeAttribute("size");
+      fontElements[i].style.fontSize = this.value;
+    }
+  }
+});
+
+/* ===== Export PDF ===== */
+
+async function exportNotepad(){
+
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF();
+
+  const textContent = editor.innerText;
+
+  doc.text(textContent, 10, 10);
+
+  const imgData = canvas.toDataURL("image/png");
+  doc.addImage(imgData, "PNG", 10, 60, 180, 100);
+
+  doc.save("Student_Notepad.pdf");
+}
+</script>
+
+</body>
+</html>
